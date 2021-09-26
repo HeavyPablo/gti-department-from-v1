@@ -69,14 +69,14 @@
                     </li>
 
                     <li class=" nav-item">
-                        <a class="d-flex align-items-center" href="/">
+                        <a class="d-flex align-items-center" href="/tiposervicio">
                             <vue-feather type="airplay"></vue-feather>
                             <span class="menu-title text-truncate">Tipos de servicios</span>
                         </a>
                     </li>
 
                     <li class=" nav-item">
-                        <a class="d-flex align-items-center" href="/">
+                        <a class="d-flex align-items-center" href="/transporte">
                             <vue-feather type="truck"></vue-feather>
                             <span class="menu-title text-truncate">Transporte</span>
                         </a>
