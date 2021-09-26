@@ -21,6 +21,4 @@ app.component('VueFeather', VueFeather);
 axios.defaults.withCredentials = true
 axios.defaults.baseURL = 'https://localhost:8000/';
 
-Vue.config.productionTip = false
-
-app.use(router).mount('#app');
+app.use({router, store}).mount('#app');
