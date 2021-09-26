@@ -1,7 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from './store'
 import axios from 'axios'
 import VueFeather from 'vue-feather'
 
@@ -21,4 +20,4 @@ app.component('VueFeather', VueFeather);
 axios.defaults.withCredentials = true
 axios.defaults.baseURL = 'https://localhost:8000/';
 
-app.use({router, store}).mount('#app');
+app.use(router).mount('#app');
