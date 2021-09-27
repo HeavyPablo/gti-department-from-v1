@@ -62,7 +62,7 @@
                     </li>
 
                     <li class=" nav-item">
-                        <a class="d-flex align-items-center" href="/">
+                        <a class="d-flex align-items-center" href="/listaservicio">
                             <vue-feather type="list"></vue-feather>
                             <span class="menu-title text-truncate">Lista de servicios</span>
                         </a>
