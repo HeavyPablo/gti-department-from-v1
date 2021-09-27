@@ -36,7 +36,7 @@
                     </li>
 
                     <li class=" nav-item">
-                        <a class="d-flex align-items-center" href="/">
+                        <a class="d-flex align-items-center" href="disponible">
                             <vue-feather type="check-circle"></vue-feather>
                             <span class="menu-title text-truncate">Disponibles</span>
                         </a>
