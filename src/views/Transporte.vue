@@ -3,17 +3,15 @@
   <div class="contact">
     <h1 class="title">Transporte</h1>
   </div>
-  <form action class="form">
-    <input
-      v-model="name"
-      class="form-input"
-      type="text"
-      id="name"
-      required
-      placeholder="Nombre"
-    />
-    <input class="form-submit" type="submit" value="Buscar" />
-  </form>
+  <div id="DataTables_Table_0_filter" class="dataTables_filter">
+    <label
+      >Buscar:<input
+        type="search"
+        class="form-control"
+        placeholder=""
+        aria-controls="DataTables_Table_0"
+    /></label>
+  </div>
   <div class="card-header border-bottom p-1">
     <div class="dt-action-buttons text-end">
       <div class="dt-buttons d-inline-flex">
