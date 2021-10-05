@@ -95,7 +95,7 @@
       <tbody>
         <tr>
           <th scope="row">1</th>
-          <td>Juan Mendes</td>
+          <td>Juan Mendez</td>
           <td>jmendez@gmail.com</td>
           <td>Turístico</td>
           <td>No Disponible</td>
