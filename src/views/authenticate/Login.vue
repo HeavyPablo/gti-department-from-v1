@@ -7,7 +7,7 @@
         <div class="auth-wrapper auth-cover">
           <div class="auth-inner row m-0">
             <a class="brand-logo" href="">
-              <h2 class="brand-text text-primary ms-1">Turismo Real</h2>
+              <h2 class="brand-text text-primary ms-1">Arriendo Departamento</h2>
             </a>
 
             <!-- Left Text-->
@@ -23,7 +23,7 @@
               >
                 <img
                   class="img-fluid"
-                  src="@/assets/images/pages/login-v2.svg"
+                  src="@/assets/images/pages/login-v22.jpg"
                   alt="Login V2"
                 />
               </div>
@@ -77,27 +77,6 @@
                     Ingresar
                   </button>
                 </form>
-                <p class="text-center mt-2">
-                  <span>¿Eres nuevo en nuestra plataforma?</span
-                  ><a href="auth-register-cover.html"
-                    ><span>&nbsp;Crea una cuenta</span></a
-                  >
-                </p>
-                <div class="divider my-2">
-                  <div class="divider-text">o</div>
-                </div>
-
-                <div class="auth-footer-btn d-flex justify-content-center">
-                  <a class="btn btn-facebook" href="#">
-                    <vue-feather type="facebook"></vue-feather>
-                  </a>
-                  <a class="btn btn-twitter white" href="#">
-                    <vue-feather type="twitter"></vue-feather>
-                  </a>
-                  <a class="btn btn-google" href="#">
-                    <vue-feather type="mail"></vue-feather>
-                  </a>
-                </div>
               </div>
             </div>
             <!-- /Login-->
