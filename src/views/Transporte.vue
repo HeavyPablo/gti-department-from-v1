@@ -3,6 +3,7 @@
   <div class="contact">
     <h1 class="title">Transporte</h1>
   </div>
+  <hr style="border-color:red;">
   <div id="DataTables_Table_0_filter" class="dataTables_filter">
     <label
       >Buscar:<input

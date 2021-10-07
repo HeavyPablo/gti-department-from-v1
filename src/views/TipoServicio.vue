@@ -7,11 +7,14 @@
     <div class="contact">
       <h1 class="title">Tipos de servicios</h1>
     </div>
+    <hr style="border-color: red" />
     <div class="card">
       <div class="card-header">
         <h4 class="card-title">
           <font style="vertical-align: inherit"
-            ><font style="vertical-align: inherit">Formulario</font></font
+            ><font style="vertical-align: inherit"
+              >Registro Servicio</font
+            ></font
           >
         </h4>
       </div>
@@ -23,7 +26,7 @@
                 <label class="form-label" for="first-name-column"
                   ><font style="vertical-align: inherit"
                     ><font style="vertical-align: inherit"
-                      >Nombre</font
+                      >Nombre Completo</font
                     ></font
                   ></label
                 >
@@ -31,7 +34,7 @@
                   type="text"
                   id="first-name-column"
                   class="form-control"
-                  placeholder="Nombre"
+                  placeholder="Nombre Completo"
                   name="fname-column"
                 />
               </div>
@@ -40,15 +43,14 @@
               <div class="mb-1">
                 <label class="form-label" for="last-name-column"
                   ><font style="vertical-align: inherit"
-                    ><font style="vertical-align: inherit">Apellido</font></font
+                    ><font style="vertical-align: inherit">Fecha</font></font
                   ></label
                 >
                 <input
                   type="text"
-                  id="last-name-column"
-                  class="form-control"
-                  placeholder="Apellido"
-                  name="lname-column"
+                  class="form-control date-mask"
+                  placeholder="AAAA-MM-DD"
+                  id="date"
                 />
               </div>
             </div>
@@ -56,23 +58,39 @@
               <div class="mb-1">
                 <label class="form-label" for="city-column"
                   ><font style="vertical-align: inherit"
-                    ><font style="vertical-align: inherit">asd</font></font
+                    ><font style="vertical-align: inherit"
+                      >Tipo de Servicio</font
+                    ></font
                   ></label
                 >
-                <input
-                  type="text"
-                  id="city-column"
-                  class="form-control"
-                  placeholder="asd"
-                  name="city-column"
-                />
+                <select class="form-select" id="basicSelect">
+                  <option>
+                    <font style="vertical-align: inherit"
+                      ><font style="vertical-align: inherit">Servico 1</font></font
+                    >
+                  </option>
+                  <option>
+                    <font style="vertical-align: inherit"
+                      ><font style="vertical-align: inherit"
+                        >Servico 2</font
+                      ></font
+                    >
+                  </option>
+                  <option>
+                    <font style="vertical-align: inherit"
+                      ><font style="vertical-align: inherit"
+                        >Servico 3</font
+                      ></font
+                    >
+                  </option>
+                </select>
               </div>
             </div>
             <div class="col-md-6 col-12">
               <div class="mb-1">
                 <label class="form-label" for="country-floating"
                   ><font style="vertical-align: inherit"
-                    ><font style="vertical-align: inherit">asd</font></font
+                    ><font style="vertical-align: inherit">Lugar</font></font
                   ></label
                 >
                 <input
@@ -80,7 +98,7 @@
                   id="country-floating"
                   class="form-control"
                   name="country-floating"
-                  placeholder="asd"
+                  placeholder="Lugar"
                 />
               </div>
             </div>
@@ -88,16 +106,24 @@
               <div class="mb-1">
                 <label class="form-label" for="company-column"
                   ><font style="vertical-align: inherit"
-                    ><font style="vertical-align: inherit">asd</font></font
+                    ><font style="vertical-align: inherit">Teléfono</font></font
                   ></label
                 >
-                <input
-                  type="text"
-                  id="company-column"
-                  class="form-control"
-                  name="company-column"
-                  placeholder="asd"
-                />
+                <div class="input-group input-group-merge">
+                  <span class="input-group-text"
+                    ><font style="vertical-align: inherit"
+                      ><font style="vertical-align: inherit"
+                        >Chile (+569)</font
+                      ></font
+                    ></span
+                  >
+                  <input
+                    type="text"
+                    class="form-control phone-number-mask"
+                    placeholder="1234 5678"
+                    id="phone-number"
+                  />
+                </div>
               </div>
             </div>
             <div class="col-md-6 col-12">
