@@ -50,7 +50,7 @@
                     </li>
 
                     <li class=" nav-item">
-                        <a class="d-flex align-items-center" href="/">
+                        <a class="d-flex align-items-center" href="mantenimiento">
                             <vue-feather type="tool"></vue-feather>
                             <span class="menu-title text-truncate">Mantenciones</span>
                         </a>

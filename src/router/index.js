@@ -5,6 +5,7 @@ import TipoServicio from '../views/TipoServicio.vue'
 import Transporte from '../views/Transporte.vue'
 import Disponible from '../views/Disponible.vue'
 import ListaServicio from '../views/ListaServicio.vue'
+import Mantenimiento from '../views/Mantenimiento.vue'
 
 const routes = [
   { path: '/login', name: 'Login', component: Login },
@@ -13,7 +14,8 @@ const routes = [
   { path: '/tiposervicio', name: 'TipoServicio', component: TipoServicio},
   { path: '/transporte', name: 'Transporte', component: Transporte},
   { path: '/disponible', name: 'Disponible', component: Disponible },
-  { path: '/listaservicio', name: 'ListaServicio', component: ListaServicio }
+  { path: '/listaservicio', name: 'ListaServicio', component: ListaServicio },
+  { path: '/mantenimiento', name: 'Mantenimiento', component: Mantenimiento }
 
 ]
 
