@@ -3,10 +3,11 @@
     <div class="content-header row">
       <div class="content-header-left col-md-9 col-12 mb-2">
         <div class="row breadcrumbs-top">
-          <div class="col-12">
-            <h2 class="content-header-title float-start mb-0">Disponible</h2>
+          <div class="contact">
+            <h1 class="title">Disponibles</h1>
           </div>
         </div>
+        <hr style="border-color: red" />
       </div>
     </div>
 
@@ -18,7 +19,6 @@
               id="DataTables_Table_0_wrapper"
               class="dataTables_wrapper dt-bootstrap5 no-footer"
             >
-          
               <div
                 class="
                   d-flex
@@ -81,9 +81,7 @@
                       style="width: 38px"
                       data-col="1"
                       aria-label=""
-                    >
-                   
-                    </th>
+                    ></th>
                     <th
                       class="sorting"
                       scope="col"
@@ -127,7 +125,7 @@
                       style="width: 144px"
                       aria-label="Salary: activate to sort column ascending"
                     >
-                      Descripcion 
+                      Descripcion
                     </th>
                     <th
                       class="sorting"
@@ -140,40 +138,22 @@
                     >
                       capacidad
                     </th>
-                  
                   </tr>
                 </thead>
                 <tbody>
-                  <tr   scope="col" class="odd">
-                    <td >
-                       1
-                    </td>
-                    <td >
-                      Disponible
-                    </td>
-                     <td >
-                      Vargas 475
-                    </td>
-                     <td >
-                     500
-                    </td>
-                     <td >
-                     Pieza de departamento dispoble 
-                    </td>
-                    <td >
-                     2 persona
-                    </td>
-
+                  <tr scope="col" class="odd">
+                    <td>1</td>
+                    <td>Disponible</td>
+                    <td>Vargas 475</td>
+                    <td>500</td>
+                    <td>Pieza de departamento dispoble</td>
+                    <td>2 persona</td>
                   </tr>
-      <tr class="odd">
+                  <tr class="odd">
                     <td valign="top" colspan="7" class="dataTables_empty">
                       Cargando...
                     </td>
-                
-
                   </tr>
-
-
                 </tbody>
               </table>
               <div class="d-flex justify-content-between mx-0 row">
