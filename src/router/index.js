@@ -4,16 +4,30 @@ import Login from '../views/authenticate/Login.vue'
 import TipoServicio from '../views/TipoServicio.vue'
 import Transporte from '../views/Transporte.vue'
 import Disponible from '../views/Disponible.vue'
+import Agregar from '../views/Agregar.vue'
 import ListaServicio from '../views/ListaServicio.vue'
+import Mantenimiento from '../views/Mantenimiento.vue'
+
+
+const authenticated = (to, from, next) => {
+  const token = localStorage.getItem('user-token')
+  if (token) {
+    next()
+    return
+  }
+  next('/login')
+}
 
 const routes = [
   { path: '/login', name: 'Login', component: Login },
-  { path: '/', name: 'Home', component: Home },
-  { path: '/about', name: 'About', component: () => import('../views/About.vue') },
-  { path: '/tiposervicio', name: 'TipoServicio', component: TipoServicio},
-  { path: '/transporte', name: 'Transporte', component: Transporte},
-  { path: '/disponible', name: 'Disponible', component: Disponible },
-  { path: '/listaservicio', name: 'ListaServicio', component: ListaServicio }
+  { path: '/', name: 'Home', component: Home, beforeEnter: authenticated },
+  { path: '/about', name: 'About', component: () => import('../views/About.vue'), beforeEnter: authenticated },
+  { path: '/tiposervicio', name: 'TipoServicio', component: TipoServicio, beforeEnter: authenticated},
+  { path: '/transporte', name: 'Transporte', component: Transporte, beforeEnter: authenticated },
+  { path: '/agregar', name:'Agregar', component: Agregar, beforeEnter: authenticated },
+  { path: '/disponible', name: 'Disponible', component: Disponible, beforeEnter: authenticated },
+  { path: '/listaservicio', name: 'ListaServicio', component: ListaServicio, beforeEnter: authenticated },
+  { path: '/mantenimiento', name: 'Mantenimiento', component: Mantenimiento, beforeEnter: authenticated }
 
 ]
 

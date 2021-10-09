@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import Nav from '@/components/VerticalNavegation.vue'
-import Header from '@/components/HeaderNavegation.vue'
+import Nav from '@/components/VerticalNavegation.vue';
+import Header from '@/components/HeaderNavegation.vue';
 
 
 export default {

@@ -10,6 +10,58 @@
         <hr style="border-color: red" />
       </div>
     </div>
+  </div>
+  <div class="container" style="margin-top: 59px">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Capacidad</th>
+          <th scope="col">Cuarto</th>
+          <th scope="col">cuarto de baño</th>
+          <th scope="col">Direccion</th>
+          <th scope="col">Descripcion</th>
+          <th scope="col">Precio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+       
+          <td></td>
+          <td>Disponible</td>
+          <td>2 persona</td>
+          <td>2</td>
+          <td>1</td>
+          <td>vargas 475</td>
+          <td>..........</td>
+          <td>250.000</td>
+        </tr>
+        <tr>
+   
+          <td></td>
+          <td>Disponible</td>
+          <td>2 persona</td>
+          <td>2</td>
+          <td>1</td>
+          <td>vargas 475</td>
+          <td>..........</td> 
+          <td>250.000</td>
+        </tr>
+        <tr>
+
+          <td></td>
+          <td> </td>
+          <td>2 persona</td>
+          <td>2</td>
+          <td>1</td>
+          <td>vargas 475</td>
+          <td>..........</td>
+          <td>250.000</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
     <section id="basic-datatable">
       <div class="row">
@@ -210,42 +262,36 @@
     </section>
   </div>
 
-  <button
-    class="
-      btn btn-primary btn-icon
-      scroll-top
-      waves-effect waves-float waves-light
-    "
-    type="button"
-    style="display: inline-block"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="14"
-      height="14"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="feather feather-arrow-up"
-    >
-      <line x1="12" y1="19" x2="12" y2="5"></line>
-      <polyline points="5 12 12 5 19 12"></polyline>
-    </svg>
-  </button>
 </template>
 
+
 <script>
+import axios from 'axios'
 export default {
-  data() {
-    return {};
+  name : "Agregar",
+  data:function() {
+    return {
+      id:null,
+      form:{
+        "status" : "",
+        "capacity":"",
+        "bedroom":"",
+        "bathroom":"",
+        "address":"",
+        "description":"",
+        "value":"",
+        "created_at":"",
+        "token" :""
+      }
+    };
   },
-
-  created() {},
-
-  methods: {},
+  mounted:function(){
+    this.id = this.$route.params.id;
+    axios.get("http://localhost:8080/departments?id="+ this.id)
+    .then( datos => {
+      this.form.status = datos.data[0].status;
+      console.log(this.form);
+    })
+  }
 };
 </script>
-
