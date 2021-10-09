@@ -13,6 +13,12 @@ import '@/assets/css/themes/dark-layout.css';
 import '@/assets/css/themes/bordered-layout.css';
 import '@/assets/css/themes/semi-dark-layout.css';
 
+import '@/assets/vendors/css/tables/datatable/dataTables.bootstrap5.min.css';
+import '@/assets/vendors/css/tables/datatable/responsive.bootstrap5.min.css';
+import '@/assets/vendors/css/tables/datatable/buttons.bootstrap5.min.css';
+import '@/assets/vendors/css/tables/datatable/rowGroup.bootstrap5.min.css';
+import '@/assets/vendors/css/tables/datatable/dataTables.bootstrap5.min.css';
+
 import 'vue-toast-notification/dist/theme-sugar.css';
 
 

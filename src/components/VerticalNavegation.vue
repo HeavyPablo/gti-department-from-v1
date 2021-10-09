@@ -87,6 +87,18 @@
                             <span class="menu-title text-truncate">Transporte</span>
                         </a>
                     </li>
+
+                    <li class=" navigation-header">
+                        Configuración
+                        <i data-feather="more-horizontal"></i>
+                    </li>
+
+                    <li class=" nav-item">
+                        <a class="d-flex align-items-center" href="/equipments-types">
+                            <vue-feather type="list"></vue-feather>
+                            <span class="menu-title text-truncate">Tipos de equipamientos</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

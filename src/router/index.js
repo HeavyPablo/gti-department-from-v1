@@ -8,6 +8,8 @@ import Agregar from '../views/Agregar.vue'
 import ListaServicio from '../views/ListaServicio.vue'
 import Mantenimiento from '../views/Mantenimiento.vue'
 
+import EquipmentType from '../views/equipmentsTypes/Index.vue'
+
 
 const authenticated = (to, from, next) => {
   const token = localStorage.getItem('user-token')
@@ -27,7 +29,10 @@ const routes = [
   { path: '/agregar', name:'Agregar', component: Agregar, beforeEnter: authenticated },
   { path: '/disponible', name: 'Disponible', component: Disponible, beforeEnter: authenticated },
   { path: '/listaservicio', name: 'ListaServicio', component: ListaServicio, beforeEnter: authenticated },
-  { path: '/mantenimiento', name: 'Mantenimiento', component: Mantenimiento, beforeEnter: authenticated }
+  { path: '/mantenimiento', name: 'Mantenimiento', component: Mantenimiento, beforeEnter: authenticated },
+
+
+  { path: '/equipments-types', name: 'EquipmentTypes', component: EquipmentType, beforeEnter: authenticated },
 
 ]
 

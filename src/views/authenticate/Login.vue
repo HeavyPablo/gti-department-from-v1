@@ -23,7 +23,7 @@
               >
                 <img
                   class="img-fluid"
-                  src="@/assets/images/pages/reset-password-v2.svg"
+                  src="@/assets/images/pages/login-v22.jpg"
                   alt="Login V2"
                 />
               </div>
@@ -33,7 +33,7 @@
             <!-- Login-->
             <div class="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5">
               <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
-                <h2 class="card-title fw-bold mb-1">Bienvenido!</h2>
+                <h2 class="card-title fw-bold mb-1">Bienvenido/a</h2>
                 <p class="card-text mb-2">Ingresa tu cuenta para continuar</p>
                 <form
                   class="auth-login-form mt-2" @submit.prevent="login"
@@ -77,30 +77,6 @@
                     Ingresar
                   </button>
                 </form>
-                <p class="text-center mt-2">
-                  <span>¿Eres nuevo en nuestra plataforma?</span
-                  ><a href="auth-register-cover.html"
-                    ><span>&nbsp;Crea una cuenta</span></a
-                  >
-                </p>
-                <div class="divider my-2">
-                  <div class="divider-text">o</div>
-                </div>
-
-                <div class="auth-footer-btn d-flex justify-content-center">
-                  <a class="btn btn-facebook" href="#">
-                    <vue-feather type="facebook"></vue-feather>
-                  </a>
-                  <a class="btn btn-instagram white" href="#">
-                    <vue-feather type="instagram"></vue-feather>
-                  </a>
-                  <a class="btn btn-twitter white" href="#">
-                    <vue-feather type="twitter"></vue-feather>
-                  </a>
-                  <a class="btn btn-google" href="#">
-                    <vue-feather type="mail"></vue-feather>
-                  </a>
-                </div>
               </div>
             </div>
             <!-- /Login-->
