@@ -36,9 +36,7 @@
                 <h2 class="card-title fw-bold mb-1">Bienvenido/a</h2>
                 <p class="card-text mb-2">Ingresa tu cuenta para continuar</p>
                 <form
-                  class="auth-login-form mt-2"
-                  action="index.html"
-                  method="POST"
+                  class="auth-login-form mt-2" @submit.prevent="login"
                 >
                   <div class="mb-1">
                     <label class="form-label" for="login-email">Email</label>
@@ -51,12 +49,13 @@
                       aria-describedby="login-email"
                       autofocus=""
                       tabindex="1"
+                      required
+                      v-model="create.username"
                     />
                   </div>
                   <div class="mb-1">
                     <label class="form-label" for="login-password"
-                      >Contraseña</label
-                    >
+                      >Contraseña</label>
                     <div
                       class="input-group input-group-merge form-password-toggle"
                     >
@@ -68,12 +67,13 @@
                         placeholder="············"
                         aria-describedby="login-password"
                         tabindex="2"
-                      /><span class="input-group-text cursor-pointer"
-                        ><i data-feather="eye"></i
-                      ></span>
+                        required
+                        v-model="create.password"
+                      />
+                      <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
                     </div>
                   </div>
-                  <button class="btn btn-primary w-100" tabindex="4">
+                  <button type="submit" class="btn btn-primary w-100" tabindex="4">
                     Ingresar
                   </button>
                 </form>
@@ -88,16 +88,45 @@
 </template>
 
 <script>
+import Login from '../../services/Login';
+
 export default {
   data() {
-    return [];
+    return {
+      create: {},
+      errors: {}
+    };
   },
 
   props: [""],
 
   created() {},
 
-  methods: {},
+  methods: {
+    login() {
+      this.$toast.clear();
+      Login.store(this.create, data => {
+        this.$toast.open({
+            message: 'Credenciales correctas!',
+            type: 'success'
+        });
+        localStorage.setItem('user-token', data.token);
+        localStorage.setItem('token-refresh', data.refreshToken);
+        localStorage.setItem('role', data.role);
+
+        window.location.href = '/';
+      }, errors => {
+        this.errors = errors;
+        if (this.errors.status && this.errors.status === 401) {
+          this.$toast.open({
+              message: 'Usuario y/o contraseña incorrecta!',
+              type: 'error'
+          });
+        }
+      })
+    },
+
+  },
 };
 </script>
 
