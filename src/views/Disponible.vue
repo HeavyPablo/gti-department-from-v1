@@ -8,6 +8,8 @@
       >Buscar:<input
         type="search"
         class="form-control"
+        v-model="form.status"
+        name="status"
         placeholder=""
         aria-controls="DataTables_Table_0"
     /></label>
@@ -122,7 +124,7 @@
         <tr>
 
           <td></td>
-          <td>Disponible</td>
+          <td> </td>
           <td>2 persona</td>
           <td>2</td>
           <td>1</td>
@@ -143,13 +145,32 @@
 
 
 <script>
- 
-  export default {
-    data() {
-      return {
-      
+import axios from 'axios'
+export default {
+  name : "Agregar",
+  data:function() {
+    return {
+      id:null,
+      form:{
+        "status" : "",
+        "capacity":"",
+        "bedroom":"",
+        "bathroom":"",
+        "address":"",
+        "description":"",
+        "value":"",
+        "created_at":"",
+        "token" :""
       }
-    }
+    };
+  },
+  mounted:function(){
+    this.id = this.$route.params.id;
+    axios.get("http://localhost:8080/departments?id="+ this.id)
+    .then( datos => {
+      this.form.status = datos.data[0].status;
+      console.log(this.form);
+    })
   }
+};
 </script>
-

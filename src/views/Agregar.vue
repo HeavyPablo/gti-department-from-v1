@@ -169,6 +169,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name : "Agregar",
   data:function() {
@@ -189,11 +190,11 @@ export default {
   },
   mounted:function(){
     this.id = this.$route.prams.id;
-    axios.get()
+    axios.get("http://localhost:8080/departments?id="+ this.id)
+    .then( datos => {
+      this.form.status = datos.data[0].status;
+      console.log(this.form);
+    })
   }
-
-  created() {},
-
-  methods: {},
 };
 </script>
