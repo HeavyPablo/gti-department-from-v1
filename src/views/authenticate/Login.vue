@@ -42,17 +42,13 @@
                     <label class="form-label" for="login-email">Email</label>
                     <input
                       class="form-control"
-                      id="login-email"
                       type="text"
-                      name="login-email"
                       placeholder="john@example.com"
-                      aria-describedby="login-email"
-                      autofocus=""
-                      tabindex="1"
                       required
                       v-model="create.username"
                     />
                   </div>
+
                   <div class="mb-1">
                     <label class="form-label" for="login-password"
                       >Contraseña</label>
@@ -61,12 +57,8 @@
                     >
                       <input
                         class="form-control form-control-merge"
-                        id="login-password"
                         type="password"
-                        name="login-password"
                         placeholder="············"
-                        aria-describedby="login-password"
-                        tabindex="2"
                         required
                         v-model="create.password"
                       />
@@ -103,6 +95,7 @@ export default {
   created() {},
 
   methods: {
+
     login() {
       this.$toast.clear();
       Login.store(this.create, data => {
@@ -110,6 +103,7 @@ export default {
             message: 'Credenciales correctas!',
             type: 'success'
         });
+
         localStorage.setItem('user-token', data.token);
         localStorage.setItem('token-refresh', data.refreshToken);
         localStorage.setItem('role', data.role);

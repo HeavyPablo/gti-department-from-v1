@@ -4,6 +4,7 @@ import router from './router';
 import axios from 'axios';
 import VueFeather from 'vue-feather';
 import VueToast from 'vue-toast-notification';
+import * as bootstrap from 'bootstrap';
 
 import '@/assets/css/bootstrap.css';
 import '@/assets/css/bootstrap-extended.css';
@@ -21,11 +22,14 @@ import '@/assets/vendors/css/tables/datatable/dataTables.bootstrap5.min.css';
 
 import 'vue-toast-notification/dist/theme-sugar.css';
 
+import Modal from './components/Modal';
+
 
 
 const app = createApp(App);
 
 app.component('VueFeather', VueFeather);
+app.component('Modal', Modal);
 
 axios.defaults.withCredentials = true
 axios.defaults.baseURL = 'http://localhost:8080/';
@@ -37,6 +41,7 @@ if (token) {
 
 app.use(router);
 app.use(VueToast);
+app.use(bootstrap);
 
 app.mount('#app');
 
