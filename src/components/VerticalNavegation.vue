@@ -36,9 +36,14 @@
                     </li>
 
                     <li class=" nav-item">
-                        <a class="d-flex align-items-center" href="departamento">
+                        <a class="d-flex align-items-center" href="agregar">
                             <vue-feather type="check-circle"></vue-feather>
-                            <span class="menu-title text-truncate">Departamento</span>
+                            <span class="menu-title text-truncate">Agregar</span>
+                        </a>
+
+                        <a class="d-flex align-items-center" href="disponible">
+                            <vue-feather type="check-circle"></vue-feather>
+                            <span class="menu-title text-truncate">Disponibles</span>
                         </a>
                      
                     </li>

@@ -3,10 +3,10 @@ import Home from '../views/Home.vue'
 import Login from '../views/authenticate/Login.vue'
 import TipoServicio from '../views/TipoServicio.vue'
 import Transporte from '../views/Transporte.vue'
+import Disponible from '../views/Disponible.vue'
+import Agregar from '../views/Agregar.vue'
 import ListaServicio from '../views/ListaServicio.vue'
 import Mantenimiento from '../views/Mantenimiento.vue'
-
-import Departamento from '../views/Department/Index.vue'
 
 import EquipmentType from '../views/equipmentsTypes/Index.vue'
 
@@ -26,7 +26,8 @@ const routes = [
   { path: '/about', name: 'About', component: () => import('../views/About.vue'), beforeEnter: authenticated },
   { path: '/tiposervicio', name: 'TipoServicio', component: TipoServicio, beforeEnter: authenticated},
   { path: '/transporte', name: 'Transporte', component: Transporte, beforeEnter: authenticated },
-  { path: '/departamento', name: 'Departamento', component: Departamento, beforeEnter: authenticated },
+  { path: '/agregar', name:'Agregar', component: Agregar, beforeEnter: authenticated },
+  { path: '/disponible', name: 'Disponible', component: Disponible, beforeEnter: authenticated },
   { path: '/listaservicio', name: 'ListaServicio', component: ListaServicio, beforeEnter: authenticated },
   { path: '/mantenimiento', name: 'Mantenimiento', component: Mantenimiento, beforeEnter: authenticated },
 

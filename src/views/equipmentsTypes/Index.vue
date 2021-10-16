@@ -28,9 +28,7 @@
                             <td>{{ equipment_type.description }}</td>
                             <td>
                                 <div class="d-flex">
-                                    <button type="button" class="btn btn-warning mx-2" 
-                                        data-bs-toggle="modal" data-bs-target="#dlgEditEquipmentType" 
-                                        @click="show(equipment_type)">
+                                    <button type="button" class="btn btn-warning mx-2" data-bs-toggle="modal" data-bs-target="#dlgEditEquipmentType" @click="show(equipment_type)">
                                         <vue-feather type="edit-2" size="14"></vue-feather>
                                     </button>
                                     <button type="button" class="btn btn-danger mx-2" @click="destroy(equipment_type.id)">
@@ -75,7 +73,7 @@
 
 <script>
 import EquipmentType from '../../services/EquipmentType'
-import EquipmentTypeCreate from './Create.vue'
+import EquipmentTypeCreate from './Create'
 import { Modal } from 'bootstrap'
 
 export default {
