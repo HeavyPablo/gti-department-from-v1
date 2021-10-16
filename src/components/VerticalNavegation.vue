@@ -99,6 +99,13 @@
                             <span class="menu-title text-truncate">Tipos de equipamientos</span>
                         </a>
                     </li>
+
+                     <li class=" nav-item">
+                        <a class="d-flex align-items-center" href="/services-types">
+                            <vue-feather type="list"></vue-feather>
+                            <span class="menu-title text-truncate">Tipos de servicios</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

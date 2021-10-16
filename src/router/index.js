@@ -9,6 +9,7 @@ import ListaServicio from '../views/ListaServicio.vue'
 import Mantenimiento from '../views/Mantenimiento.vue'
 
 import EquipmentType from '../views/equipmentsTypes/Index.vue'
+import ServiceType from '../views/servicesTypes/Index.vue'
 
 
 const authenticated = (to, from, next) => {
@@ -33,6 +34,7 @@ const routes = [
 
 
   { path: '/equipments-types', name: 'EquipmentTypes', component: EquipmentType, beforeEnter: authenticated },
+  { path: '/services-types', name: 'ServiceTypes', component: ServiceType, beforeEnter: authenticated },
 
 ]
 

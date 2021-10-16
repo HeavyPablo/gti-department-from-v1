@@ -78,7 +78,7 @@
               <span
                 ><font style="vertical-align: inherit"
                   ><font style="vertical-align: inherit"
-                    >Departamentos Disponibles</font
+                    >Deptos. Disponibles</font
                   ></font
                 ></span
               >
@@ -210,10 +210,6 @@
                   <font style="vertical-align: inherit"
                     ><font style="vertical-align: inherit">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Ducimus earum dolorum laudantium, dolorem voluptatum optio
-                      praesentium quia beatae voluptate magni accusantium
-                      repellendus eius non quaerat blanditiis architecto maxime
-                      eum sit!
                     </font></font
                   >
                 </p>
@@ -243,9 +239,6 @@
                   <font style="vertical-align: inherit"
                     ><font style="vertical-align: inherit">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Iure, fugit provident commodi consectetur tempore,
-                      inventore cum, saepe rerum incidunt error delectus nulla
-                      odit. Perferendis minus nostrum est ut assumenda! Nostrum?
                     </font>
                   </font>
                 </p>
@@ -274,11 +267,7 @@
                 <p class="text-body mt-1 mb-0">
                   <font style="vertical-align: inherit"
                     ><font style="vertical-align: inherit"
-                      >Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Pariatur ipsam laudantium minus, quidem dolorem unde
-                      soluta, beatae modi provident minima nobis quod voluptate
-                      facere tempora incidunt exercitationem consequuntur
-                      aspernatur facilis.</font
+                      >Lorem ipsum dolor sit amet consectetur adipisicing elit.</font
                     ></font
                   >
                 </p>
