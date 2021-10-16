@@ -1,47 +1,43 @@
 <template>
     <div>
-
         <div class="card">
-            <div class="card-body border-bottom">
+            <div class="card-header">
                 <h4 class="card-title">Tipos de equipamientos</h4>
-
-                <div class="row">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dlgNewEquipmentType">
-                        <vue-feather type="plus" size="1.5rem"></vue-feather> Agregar
-                    </button>
-                </div>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dlgNewEquipmentType">
+                    <vue-feather type="plus" size="1rem"></vue-feather> Agregar
+                </button>
             </div>
-            <div class="card-datatable table-responsive pt-0">
-                <table class="user-list-table table">
-                    <thead class="table-ligth">
+
+            <div class="card-body">
+                <table id="equipmentTypeIndexTable" class="table">
+                    <thead>
                         <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Descipción</th>
-                        <th scope="col">Acciones</th>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Descipción</th>
+                        <th class="no-sort text-end">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="equipment_type in equipments_types" :key="equipment_type.id">
-                            <th scope="row">{{ equipment_type.id }}</th>
-                            <td>{{ equipment_type.name }}</td>
-                            <td>{{ equipment_type.description }}</td>
-                            <td>
-                                <div class="d-flex">
-                                    <button type="button" class="btn btn-warning mx-2" 
-                                        data-bs-toggle="modal" data-bs-target="#dlgEditEquipmentType" 
-                                        @click="show(equipment_type)">
-                                        <vue-feather type="edit-2" size="14"></vue-feather>
-                                    </button>
-                                    <button type="button" class="btn btn-danger mx-2" @click="destroy(equipment_type.id)">
-                                        <vue-feather type="trash-2" size="14"></vue-feather>
-                                    </button>
-                                </div>
+                            <td class="align-middle">{{ equipment_type.id }}</td>
+                            <td class="align-middle">{{ equipment_type.name }}</td>
+                            <td class="align-middle">{{ equipment_type.description }}</td>
+                            <td class="align-middle text-end">
+                                <button type="button" class="btn btn-warning mx-2" 
+                                    data-bs-toggle="modal" data-bs-target="#dlgEditEquipmentType" 
+                                    @click="show(equipment_type)">
+                                    <vue-feather type="edit-2" size="14"></vue-feather>
+                                </button>
+                                <button type="button" class="btn btn-danger mx-2" @click="destroy(equipment_type.id)">
+                                    <vue-feather type="trash-2" size="14"></vue-feather>
+                                </button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+            
         </div>
 
 
@@ -66,17 +62,20 @@
             <template v-slot:btnSuccess>
                 <button type="button" class="btn btn-primary" @click="update">Guardar</button>
             </template>
-        </modal>
-
-        
-        
+        </modal>        
     </div>
 </template>
 
 <script>
-import EquipmentType from '../../services/EquipmentType'
-import EquipmentTypeCreate from './Create.vue'
-import { Modal } from 'bootstrap'
+
+import EquipmentType from '../../services/EquipmentType';
+import EquipmentTypeCreate from './Create';
+import { Modal } from 'bootstrap';
+
+
+
+const $ = require('jquery')
+window.$ = $
 
 export default {
     components: { EquipmentTypeCreate },
@@ -85,12 +84,16 @@ export default {
         return {
             equipments_types: [],
             edit: {},
-            errors: {}
+            errors: {},
         }
     },
 
     created() {
         this.index();
+    },
+
+    mounted() {
+        this.loadDataTable();
     },
 
     methods: {
@@ -116,6 +119,7 @@ export default {
                 modal.hide();
 
                 this.index();
+                this.loadDataTable();
             }, errors => {
                 this.errors = errors
             })
@@ -137,7 +141,23 @@ export default {
                 });
 
                 this.index();
+                this.loadDataTable();
             })
+        },
+
+        loadDataTable() {
+            const config = {
+                language: {
+                    url: 'datatables/language/spanish_mexico.json'
+                },
+                columnDefs: [
+                    { targets: 'no-sort', orderable: false},
+                ]
+            };
+
+            $(document).ready(function() {
+                $('#equipmentTypeIndexTable').DataTable(config);
+            });
         }
     }
 }

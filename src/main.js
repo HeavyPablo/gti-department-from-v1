@@ -4,7 +4,7 @@ import router from './router';
 import axios from 'axios';
 import VueFeather from 'vue-feather';
 import VueToast from 'vue-toast-notification';
-import * as bootstrap from 'bootstrap';
+import * as Bootstrap from 'bootstrap';
 
 import '@/assets/css/bootstrap.css';
 import '@/assets/css/bootstrap-extended.css';
@@ -26,6 +26,16 @@ import Modal from './components/Modal';
 
 
 
+import "jszip"
+import "pdfmake"
+import "datatables.net-bs5"
+import "datatables.net-buttons-bs5"
+import "datatables.net-buttons/js/buttons.html5"
+import "datatables.net-buttons/js/buttons.print"
+import "datatables.net-scroller-bs5"
+import "datatables.net-searchbuilder-bs5"
+
+
 const app = createApp(App);
 
 app.component('VueFeather', VueFeather);
@@ -41,7 +51,7 @@ if (token) {
 
 app.use(router);
 app.use(VueToast);
-app.use(bootstrap);
+app.use(Bootstrap);
 
 app.mount('#app');
 

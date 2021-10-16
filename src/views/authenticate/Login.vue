@@ -106,7 +106,8 @@ export default {
 
         localStorage.setItem('user-token', data.token);
         localStorage.setItem('token-refresh', data.refreshToken);
-        localStorage.setItem('role', data.role);
+        localStorage.setItem('username', data.user ? data.user.username : '');
+        localStorage.setItem('role', data.user && data.user.role ? data.user.role.name : '');
 
         window.location.href = '/';
       }, errors => {
