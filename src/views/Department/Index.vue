@@ -3,12 +3,11 @@
 
         <div class="card">
             <div class="card-body border-bottom">
-                <h4 class="card-title">Tipos de equipamientos</h4>
+                <h4 class="card-title">Departamento disponible</h4>
 
-                <div class="row">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dlgNewEquipmentType">
-                        <vue-feather type="plus" size="1.5rem"></vue-feather> Agregar
-                    </button>
+                <div class="row ">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#dlgNewDepartment">
+                        <vue-feather type="plus" size="1.5rem"></vue-feather> Agregar</button>
                 </div>
             </div>
             <div class="card-datatable table-responsive pt-0">
@@ -16,24 +15,31 @@
                     <thead class="table-ligth">
                         <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Descipción</th>
-                        <th scope="col">Acciones</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Capacidad</th>
+                        <th scope="col">Cuarto</th>
+                        <th scope="col">cuarto de baño</th>
+                        <th scope="col">Dirección</th>
+                        <th scope="col">valor</th>
+                        <th scope="col">Descripción</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="equipment_type in equipments_types" :key="equipment_type.id">
-                            <th scope="row">{{ equipment_type.id }}</th>
-                            <td>{{ equipment_type.name }}</td>
-                            <td>{{ equipment_type.description }}</td>
+                        <tr v-for="Department in department_availables" :key="Department.id">
+                            <th scope="row">{{ Department.id }}</th>
+                            <td>{{ Department.status }}</td>
+                            <td>{{ Department.capacity}}</td>
+                            <td>{{ Department.bedrom}}</td>
+                            <td>{{ Department.bathroom}}</td>
+                            <td>{{ Department.address}}</td>
+                            <td>{{ Department.value}}</td>
+                            <td>{{ Department.description}}</td>
                             <td>
                                 <div class="d-flex">
-                                    <button type="button" class="btn btn-warning mx-2" 
-                                        data-bs-toggle="modal" data-bs-target="#dlgEditEquipmentType" 
-                                        @click="show(equipment_type)">
+                                    <button type="button" class="btn btn-warning mx-2" data-bs-toggle="modal" data-bs-target="#dlgEditDepartment" @click="show(Department)">
                                         <vue-feather type="edit-2" size="14"></vue-feather>
                                     </button>
-                                    <button type="button" class="btn btn-danger mx-2" @click="destroy(equipment_type.id)">
+                                    <button type="button" class="btn btn-danger mx-2" @click="destroy(Department.id)">
                                         <vue-feather type="trash-2" size="14"></vue-feather>
                                     </button>
                                 </div>
@@ -45,10 +51,12 @@
         </div>
 
 
-        <equipment-type-create @stored="index"></equipment-type-create>
+      
+
+     <Department-Create @stored="index"></Department-Create>
 
 
-        <modal id="dlgEditEquipmentType" title="Editar tipo de equipamiento">
+        <modal id="dlgEditDepartment" title="Editar Departamento">
             <template v-slot:body>
                 <div class="row">
                     <div class="form-group col-sm-12">
@@ -67,23 +75,22 @@
                 <button type="button" class="btn btn-primary" @click="update">Guardar</button>
             </template>
         </modal>
-
         
         
     </div>
 </template>
 
 <script>
-import EquipmentType from '../../services/EquipmentType'
-import EquipmentTypeCreate from './Create.vue'
+import Department from '../../services/Department'
 import { Modal } from 'bootstrap'
+import DepartmentCreate from './Create.vue'
 
 export default {
-    components: { EquipmentTypeCreate },
+    components: { DepartmentCreate },
 
     data() {
         return {
-            equipments_types: [],
+            department_availables: [],
             edit: {},
             errors: {}
         }
@@ -95,14 +102,14 @@ export default {
 
     methods: {
         async index() {
-            await EquipmentType.get({}, data => {
-                this.equipments_types = data;
+            await Department.get({}, data => {
+                this.department_availables = data;
             });
         },
 
         async update() {
             this.$toast.clear();
-            await EquipmentType.update(this.edit.id, this.edit, () => {
+            await Department.update(this.edit.id, this.edit, () => {
 
                 this.edit = {};
 
@@ -111,7 +118,7 @@ export default {
                     type: 'success'
                 });
 
-                var myModalEl = document.getElementById('dlgEditEquipmentType')
+                var myModalEl = document.getElementById('dlgEditDepartment')
                 var modal = Modal.getInstance(myModalEl)
                 modal.hide();
 
@@ -127,7 +134,7 @@ export default {
 
         async destroy(element) {
             this.$toast.clear();
-            await EquipmentType.destroy(element, () => {
+            await Department.destroy(element, () => {
 
                 this.edit = {};
 
