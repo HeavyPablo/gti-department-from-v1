@@ -9,7 +9,7 @@
             </div>
 
             <div class="card-body">
-                <table class="table dataTable">
+                <table id="equipmentTypeTable" class="table">
                     <thead>
                         <tr>
                         <th>ID</th>
@@ -89,31 +89,25 @@ export default {
         this.index();
     },
 
-    beforeUpdate() {
-        console.log('dentro');
-        const config = {
-            language: {
-                url: 'datatables/language/spanish_mexico.json'
-            },
-            columnDefs: [
-
-                { targets: 'no-sort', orderable: false},
-            ]
-        };
-
-        $(document).ready(function() {
-            if($.fn.DataTable.isDataTable('table.dataTable')) {
-                $('table.dataTable').DataTable().rows().invalidate();
-            } else {
-                $('table.dataTable').DataTable(config);
-            }
-        });
-    },
-
     methods: {
         async index() {
+            const config = {
+                language: {
+                    url: 'datatables/language/spanish_mexico.json'
+                },
+                columnDefs: [
+                    { targets: 'no-sort', orderable: false},
+                ]
+            };
+
+            $('#equipmentTypeTable').DataTable().destroy();
+
             await EquipmentType.get({}, data => {
                 this.equipments_types = data;
+                
+                this.$nextTick(() => {
+                    $('#equipmentTypeTable').DataTable(config);
+                })
             });
         },
 
@@ -154,6 +148,7 @@ export default {
                 });
 
                 this.index();
+                $('table.dataTable').DataTable().rows().invalidate().draw('full-reset');
             })
         },
     }
