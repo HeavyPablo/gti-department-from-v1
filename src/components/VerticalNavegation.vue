@@ -163,6 +163,14 @@
                             <span class="menu-title text-truncate">Tipos de pagos</span>
                         </a>
                     </li>
+
+                    <li v-if="role === 'admin'" class=" nav-item">
+                        <a class="d-flex align-items-center" href="/transports">
+                            <vue-feather type="list"></vue-feather>
+                            <span class="menu-title text-truncate">Transporte</span>
+                        </a>
+                    </li>
+
                 </ul>
             </div>
         </div>
