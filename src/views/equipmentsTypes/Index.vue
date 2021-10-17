@@ -9,7 +9,7 @@
             </div>
 
             <div class="card-body">
-                <table id="equipmentTypeIndexTable" class="table">
+                <table class="table dataTable">
                     <thead>
                         <tr>
                         <th>ID</th>
@@ -19,7 +19,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="equipment_type in equipments_types" :key="equipment_type.id">
+                        <tr v-for="(equipment_type, index) in equipments_types" :key="index">
                             <td class="align-middle">{{ equipment_type.id }}</td>
                             <td class="align-middle">{{ equipment_type.name }}</td>
                             <td class="align-middle">{{ equipment_type.description }}</td>
@@ -72,10 +72,7 @@ import EquipmentType from '../../services/EquipmentType';
 import EquipmentTypeCreate from './Create';
 import { Modal } from 'bootstrap';
 
-
-
-const $ = require('jquery')
-window.$ = $
+const $ = require('jquery');
 
 export default {
     components: { EquipmentTypeCreate },
@@ -92,8 +89,25 @@ export default {
         this.index();
     },
 
-    mounted() {
-        this.loadDataTable();
+    beforeUpdate() {
+        console.log('dentro');
+        const config = {
+            language: {
+                url: 'datatables/language/spanish_mexico.json'
+            },
+            columnDefs: [
+
+                { targets: 'no-sort', orderable: false},
+            ]
+        };
+
+        $(document).ready(function() {
+            if($.fn.DataTable.isDataTable('table.dataTable')) {
+                $('table.dataTable').DataTable().rows().invalidate();
+            } else {
+                $('table.dataTable').DataTable(config);
+            }
+        });
     },
 
     methods: {
@@ -119,7 +133,6 @@ export default {
                 modal.hide();
 
                 this.index();
-                this.loadDataTable();
             }, errors => {
                 this.errors = errors
             })
@@ -141,24 +154,8 @@ export default {
                 });
 
                 this.index();
-                this.loadDataTable();
             })
         },
-
-        loadDataTable() {
-            const config = {
-                language: {
-                    url: 'datatables/language/spanish_mexico.json'
-                },
-                columnDefs: [
-                    { targets: 'no-sort', orderable: false},
-                ]
-            };
-
-            $(document).ready(function() {
-                $('#equipmentTypeIndexTable').DataTable(config);
-            });
-        }
     }
 }
 </script>

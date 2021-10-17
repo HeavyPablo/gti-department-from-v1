@@ -27,29 +27,16 @@ import Nav from '@/components/VerticalNavegation.vue';
 import Header from '@/components/HeaderNavegation.vue';
 
 
+
 export default {
   name: 'Home',
 
   components: { Nav, Header },
-
-  data() {
-    return {
-
-    }
-  },
 
   computed: {
     isLogin: function() {
       return this.$route.name === 'Login' ? true : false
     }
   },
-
-  created() {
-
-  },
-
-  methods: {
-
-  }
 }
 </script>
