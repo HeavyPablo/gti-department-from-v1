@@ -104,7 +104,7 @@ export default {
 
             await EquipmentType.get({}, data => {
                 this.equipments_types = data;
-                
+
                 this.$nextTick(() => {
                     $('#equipmentTypeTable').DataTable(config);
                 })
