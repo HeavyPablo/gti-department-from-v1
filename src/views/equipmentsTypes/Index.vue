@@ -148,7 +148,7 @@ export default {
                 });
 
                 this.index();
-                $('table.dataTable').DataTable().rows().invalidate().draw('full-reset');
+                
             })
         },
     }

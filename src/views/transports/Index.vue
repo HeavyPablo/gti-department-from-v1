@@ -9,7 +9,7 @@
             </div>
 
             <div class="card-body">
-                <table id="transporTable" class="table">
+                <table id="transportTable" class="table">
                     <thead>
                         <tr>
                         <th>ID</th>
