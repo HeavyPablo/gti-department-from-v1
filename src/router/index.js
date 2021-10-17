@@ -8,6 +8,10 @@ import Mantenimiento from '../views/Mantenimiento.vue'
 
 import Departamento from '../views/Department/Index.vue'
 
+import AdministratorDepartment from '../views/AdministratorDepartments/Index.vue'
+import AdministratorService from '../views/AdministratorServices/Index.vue'
+import AdministratorUser from '../views/AdministratorUsers/Index.vue'
+
 import EquipmentType from '../views/equipmentsTypes/Index.vue'
 import ServiceType from '../views/servicesTypes/Index.vue'
 import PaymentType from '../views/paymentsTypes/Index.vue'
@@ -32,6 +36,9 @@ const routes = [
   { path: '/listaservicio', name: 'ListaServicio', component: ListaServicio, beforeEnter: authenticated },
   { path: '/mantenimiento', name: 'Mantenimiento', component: Mantenimiento, beforeEnter: authenticated },
 
+  { path: '/administrator/departments', name: 'AdministratorDepartments', component: AdministratorDepartment, beforeEnter: authenticated },
+  { path: '/administrator/services', name: 'AdministratorServices', component: AdministratorService, beforeEnter: authenticated },
+  { path: '/administrator/users', name: 'AdministratorUsers', component: AdministratorUser, beforeEnter: authenticated },
 
   { path: '/equipments-types', name: 'EquipmentTypes', component: EquipmentType, beforeEnter: authenticated },
   { path: '/services-types', name: 'ServiceTypes', component: ServiceType, beforeEnter: authenticated },

@@ -117,21 +117,21 @@
                     </li>
 
                     <li v-if="role === 'admin'" class=" nav-item">
-                        <a class="d-flex align-items-center" href="#">
+                        <a class="d-flex align-items-center" href="/administrator/departments">
                             <vue-feather type="list"></vue-feather>
                             <span class="menu-title text-truncate">Administrar departamentos</span>
                         </a>
                     </li>
 
                     <li v-if="role === 'admin'" class=" nav-item">
-                        <a class="d-flex align-items-center" href="#">
+                        <a class="d-flex align-items-center" href="/administrator/services">
                             <vue-feather type="list"></vue-feather>
                             <span class="menu-title text-truncate">Administrar servicios</span>
                         </a>
                     </li>
 
                     <li v-if="role === 'admin'" class=" nav-item">
-                        <a class="d-flex align-items-center" href="#">
+                        <a class="d-flex align-items-center" href="/administrator/users">
                             <vue-feather type="list"></vue-feather>
                             <span class="menu-title text-truncate">Administrar usuarios</span>
                         </a>
