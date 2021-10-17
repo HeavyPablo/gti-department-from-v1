@@ -1,12 +1,12 @@
 import axios from "axios";
 
-const URL = '/services-types'
+const URL = '/payments-types'
 
 var headers = {
     'Authorization': 'Bearer ' + localStorage.getItem('user-token')
 };
 
-class ServiceType {
+class PaymentType {
     static get(params, then) {
         axios.get(URL, {params: params, headers: headers})
         .then(({data}) => then(data));
@@ -47,4 +47,4 @@ class ServiceType {
     }
 }
 
-export default ServiceType;
+export default PaymentType;
