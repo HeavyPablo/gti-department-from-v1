@@ -79,7 +79,7 @@
                     </li>
 
                     <li v-if="role === 'official'" class=" nav-item">
-                        <a class="d-flex align-items-center" href="#">
+                        <a class="d-flex align-items-center" href="/incidences">
                             <vue-feather type="tool"></vue-feather>
                             <span class="menu-title text-truncate">Registrar incidencias</span>
                         </a>
