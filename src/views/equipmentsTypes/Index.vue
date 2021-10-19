@@ -62,7 +62,7 @@
             <template v-slot:btnSuccess>
                 <button type="button" class="btn btn-primary" @click="update">Guardar</button>
             </template>
-        </modal>        
+        </modal>     
     </div>
 </template>
 
