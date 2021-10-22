@@ -41,7 +41,7 @@
             </div>
         </div>    
             
-        <equipment-type-create @stored="index"></equipment-type-create>
+        <contacts-create @stored="index"></contacts-create>
 
 
         <modal id="dlgEditContacts" title="Editar contactos">
@@ -75,3 +75,92 @@
 
     </div>
 </template>
+
+<script>
+
+import Contacts from '../../services/Contacts';
+import ContactsCreate from './Create';
+import { Modal } from 'bootstrap';
+
+const $ = require('jquery');
+
+export default {
+    components: { ContactsCreate },
+
+    data() {
+        return {
+            contacts_type: [],
+            edit: {},
+            errors: {},
+        }
+    },
+
+    created() {
+        this.index();
+    },
+
+    methods: {
+        async index() {
+            const config = {
+                language: {
+                    url: 'datatables/language/spanish_mexico.json'
+                },
+                columnDefs: [
+                    { targets: 'no-sort', orderable: false},
+                ]
+            };
+
+            $('#contactsTable').DataTable().destroy();
+
+            await Contacts.get({}, data => {
+                this.contacts_type = data;
+
+                this.$nextTick(() => {
+                    $('#contactsTable').DataTable(config);
+                })
+            });
+        },
+
+        async update() {
+            this.$toast.clear();
+            await Contacts.update(this.edit.id, this.edit, () => {
+
+                this.edit = {};
+
+                this.$toast.open({
+                    message: 'Tipo de equipamiento actualizado!',
+                    type: 'success'
+                });
+
+                var myModalEl = document.getElementById('dlgEditEquipmentType')
+                var modal = Modal.getInstance(myModalEl)
+                modal.hide();
+
+                this.index();
+            }, errors => {
+                this.errors = errors
+            })
+        },
+
+        show(element) {
+            this.edit = { ...element }
+        },
+
+        async destroy(element) {
+            this.$toast.clear();
+            await Contacts.destroy(element, () => {
+
+                this.edit = {};
+
+                this.$toast.open({
+                    message: 'Tipo de equipamiento eliminado!',
+                    type: 'success'
+                });
+
+                this.index();
+                
+            })
+        },
+    }
+}
+</script>
