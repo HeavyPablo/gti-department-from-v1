@@ -41,7 +41,7 @@
             </div>
         </div>    
             
-        <contacts-create @stored="index"></contacts-create>
+        <contactsCreate @stored="index"></contactsCreate>
 
 
         <modal id="dlgEditContacts" title="Editar contactos">
@@ -128,11 +128,11 @@ export default {
                 this.edit = {};
 
                 this.$toast.open({
-                    message: 'Tipo de equipamiento actualizado!',
+                    message: 'Contacto actualizado!',
                     type: 'success'
                 });
 
-                var myModalEl = document.getElementById('dlgEditEquipmentType')
+                var myModalEl = document.getElementById('dlgEditContacts')
                 var modal = Modal.getInstance(myModalEl)
                 modal.hide();
 
@@ -153,7 +153,7 @@ export default {
                 this.edit = {};
 
                 this.$toast.open({
-                    message: 'Tipo de equipamiento eliminado!',
+                    message: 'Contacto eliminado!',
                     type: 'success'
                 });
 

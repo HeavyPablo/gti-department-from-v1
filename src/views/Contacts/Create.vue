@@ -31,26 +31,25 @@
 </template>
 
 <script>
-/*import { Contacts}  from '../../services/Contacts '
+import Contacts from '../../services/Contacts'
 import { Modal } from 'bootstrap'
 
-export default {
-    data(){ 
-        return {
-            Create: {},
-            error: {}
 
+export default {
+    data() {
+        return {
+            create: {},
+            errors: {}
         }
-        
     },
-   
-   methods: {
+
+    methods: {
         async store() {
             this.$toast.clear();
 
             await Contacts.store(this.create, () => {
                 this.$toast.open({
-                    message: 'Tipo de equipamiento creado!',
+                    message: 'Contacto creado!',
                     type: 'success'
                 });
 
@@ -66,11 +65,5 @@ export default {
             })
         }
     }
-   
-
-
-
 }
-
-*/
 </script>
