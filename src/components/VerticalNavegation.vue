@@ -174,7 +174,7 @@
                     <li v-if="role === 'admin'" class=" nav-item">
                         <a class="d-flex align-items-center" href="/contacts">
                             <vue-feather type="list"></vue-feather>
-                            <span class="menu-title text-truncate">Contactos</span>
+                            <span class="menu-title text-truncate">Contacto</span>
                         </a>
                     </li>
 
