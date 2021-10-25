@@ -6,7 +6,7 @@ var headers = {
     'Authorization': 'Bearer ' + localStorage.getItem('user-token')
 };
 
-class Contacts {
+class Contact {
     static get(params, then) {
         axios.get(URL, {params: params, headers: headers})
         .then(({data}) => then(data));
@@ -47,4 +47,4 @@ class Contacts {
     }
 }
 
-export default Contacts;
+export default Contact;
