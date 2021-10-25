@@ -1,20 +1,20 @@
 <template>
     <div>
-        <modal id="dlgNewContact" title="Crear nuevo contacto">
-            <template v-slot:body>
+    <modal id="dlgNewContacts" title="Contactos Servicio de transporte">
+        <template v-slot:body>
                 <div class="row">
                         <div class="form-group col-sm-12">
-                            <label class="form-label">Nombre Completo</label>
+                            <label class="form-label">full name</label>
                             <input type="text" class="form-control" v-model="create.full_name"/>
                         </div>
 
                         <div class="form-group col-sm-12">
-                            <label class="form-label">TelÃ©fono</label>
+                            <label class="form-label">phone number</label>
                             <input type="text" class="form-control" v-model="create.phone_number"/>
                         </div>
 
                         <div class="form-group col-sm-12">
-                            <label class="form-label">Correo</label>
+                            <label class="form-label">Email</label>
                             <input type="text" class="form-control" v-model="create.email"/>
                         </div>
                     </div>
@@ -23,12 +23,15 @@
             <template v-slot:btnSuccess>
                 <button type="button" class="btn btn-primary" @click="store">Guardar</button>
             </template>
-        </modal>
+
+
+
+    </modal>
     </div>
 </template>
 
 <script>
-import Contact from '../../services/Contacts'
+import Contacts from '../../services/Contacts'
 import { Modal } from 'bootstrap'
 
 
@@ -44,9 +47,9 @@ export default {
         async store() {
             this.$toast.clear();
 
-            await Contact.store(this.create, () => {
+            await Contacts.store(this.create, () => {
                 this.$toast.open({
-                    message: 'Tipo de contacto creado!',
+                    message: 'Contacto creado!',
                     type: 'success'
                 });
 
@@ -54,7 +57,7 @@ export default {
 
                 this.$emit('stored');
 
-                var myModalEl = document.getElementById('dlgNewContact')
+                var myModalEl = document.getElementById('dlgNewContacts')
                 var modal = Modal.getInstance(myModalEl)
                 modal.hide();
             }, errors => {

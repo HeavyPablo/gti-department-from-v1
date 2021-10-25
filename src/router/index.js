@@ -17,7 +17,7 @@ import ServiceType from '../views/servicesTypes/Index.vue'
 import PaymentType from '../views/paymentsTypes/Index.vue'
 import Transport from '../views/transports/Index.vue'
 import Incidence from '../views/Incidences/Index.vue'
-import Contact from '../views/Contacts/Index.vue'
+import Contacts from '../views/Contacts/Index.vue'
 
 const authenticated = (to, from, next) => {
   const token = localStorage.getItem('user-token')
@@ -47,7 +47,7 @@ const routes = [
   { path: '/payments-types', name: 'PaymentTypes', component: PaymentType, beforeEnter: authenticated },
   { path: '/transports', name: 'transports', component: Transport, beforeEnter: authenticated },
   { path: '/incidences', name: 'incidences', component: Incidence, beforeEnter: authenticated },
-  { path: '/contacts', name: 'Contacts', component: Contact, beforeEnter: authenticated },
+  { Path: '/contacts', name: 'Contacts', component: Contacts, beforeEnter: authenticated }
 
 ]
 
