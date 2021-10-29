@@ -9,19 +9,11 @@
                         </div>
 
                         <div class="form-group col-sm-12">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
                             <label class="form-label">TelÃ©fono</label>
-=======
                             <label class="form-label">phone number</label>
->>>>>>> parent of e745cb2 (Contacts)
-=======
                             <label class="form-label">phone number</label>
->>>>>>> parent of e745cb2 (Contacts)
-=======
                             <label class="form-label">phone number</label>
->>>>>>> parent of e745cb2 (Contacts)
                             <input type="text" class="form-control" v-model="create.phone_number"/>
                         </div>
 

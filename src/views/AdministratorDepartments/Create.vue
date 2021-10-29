@@ -1,3 +1,4 @@
+
 <template>
     <div>
         <modal id="dlgNewDepartment" title="Crear nuevo departamento">
@@ -6,13 +7,14 @@
                     <div class="row">
                         <div class="ecommerce-gallery" data-mdb-zoom-effect="true" data-mdb-auto-height="true">
                             <div class="row py-3 shadow-5">
-                                <div class="col-sm-3 mb-1">
+                                <div id="preview" class="col-sm-3 mb-1">
                                         <div class="lightbox">
-                                            <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14a.jpg"
-                                                 alt="Gallery image 1"
-                                                 class="ecommerce-gallery-main-img active w-100"
-                                            />
+                                            <div class="imagePreviewWrapper" :style="{ 'background-image': `url(${previewImage})` }"
+                                                @click="selectImage" src="">
+                                            </div>
+                                            <input ref="fileInput" type="file" @input="pickFile" style="visibility: collapse;">
                                         </div>
+                                        
                                         <div class="row">
                                             <div class="col-4 mt-1">
                                                 <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg"
@@ -42,6 +44,12 @@
 
                                 <div class="col-sm-9">
                                     <div class="row">
+
+                                        <div class="col-8 col-sm-6">
+                                            <label class="form-label">Estado</label>
+                                            <input type="text" class="form-control" v-model="create.status"/>
+                                        </div>
+
                                         <div class="col-8 col-sm-6">
                                             <label class="form-label">Dirección</label>
                                             <input type="text" class="form-control" v-model="create.address"/>
@@ -87,37 +95,85 @@
 <script>
 import { Modal } from 'bootstrap'
 import Department from '../../services/Department'
+import Files from '../../services/Files'
 
 
 export default {
     data() {
         return {
             create: {},
-            errors: {}
+            errors: {},
+            previewImage: null
+          
         }
     },
 
-    methods: {
-        async store() {
-            this.$toast.clear();
+        methods: {
+            async store() {
+                this.$toast.clear();
 
-            await Department.store(this.create, () => {
-                this.$toast.open({
-                    message: 'Tipo de equipamiento creado!',
-                    type: 'success'
-                });
+                await Department.store && Files.store(this.create, () => {
+                    this.$toast.open({
+                        message: 'Tipo de equipamiento creado!',
+                        type: 'success'
+                    });
 
-                this.create = {};
+                    this.create = {};
 
-                this.$emit('stored');
+                    this.$emit('stored');
 
-                var myModalEl = document.getElementById('dlgNewDepartment')
-                var modal = Modal.getInstance(myModalEl)
-                modal.hide();
-            }, errors => {
-                this.errors = errors
-            })
-        }
-    }
-}
+                    var myModalEl = document.getElementById('dlgNewDepartment')
+                    var modal = Modal.getInstance(myModalEl)
+                    modal.hide();
+                }, errors => {
+                    this.errors = errors
+                })
+             
+            },
+         
+
+            selectImage(){
+                this.$refs.fileInput.click()
+            },
+
+            pickFile () {
+                let input = this.$refs.fileInput
+                let file = input.files
+                if (file && file[0]) {
+                let reader = new FileReader
+                reader.onload = e => {
+                    this.previewImage = e.target.result
+                }
+                reader.readAsDataURL(file[0])
+                this.$emit('input', file[0])
+                }
+            }
+         
+
+        },
+       
+  
+ }
+  
+
+
+
+
+
+  
 </script>
+
+<style >
+.imagePreviewWrapper {
+    width: 250px;
+    height: 250px;
+    display: block;
+    cursor: pointer;
+    margin: 0 auto 30px;
+    background-size: cover;
+    background-position: center center;
+}
+</style>
+
+
+
