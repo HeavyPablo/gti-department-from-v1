@@ -9,27 +9,16 @@ import Mantenimiento from '../views/Mantenimiento.vue'
 import Departamento from '../views/Department/Index.vue'
 
 import AdministratorDepartment from '../views/AdministratorDepartments/Index.vue'
+import AdministratorDepartmentShow from '../views/AdministratorDepartments/Show.vue'
 import AdministratorService from '../views/AdministratorServices/Index.vue'
 import AdministratorUser from '../views/AdministratorUsers/Index.vue'
 
-import EquipmentType from '../views/equipmentsTypes/Index.vue'
+import Equipment from '../views/Equipment/Index.vue'
 import ServiceType from '../views/servicesTypes/Index.vue'
 import PaymentType from '../views/paymentsTypes/Index.vue'
 import Transport from '../views/transports/Index.vue'
 import Incidence from '../views/Incidences/Index.vue'
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 import Contact from '../views/Contacts/Index.vue'
-=======
-import Contacts from '../views/Contacts/Index.vue'
->>>>>>> parent of e745cb2 (Contacts)
-=======
-import Contacts from '../views/Contacts/Index.vue'
->>>>>>> parent of e745cb2 (Contacts)
-=======
-import Contacts from '../views/Contacts/Index.vue'
->>>>>>> parent of e745cb2 (Contacts)
 
 const authenticated = (to, from, next) => {
   const token = localStorage.getItem('user-token')
@@ -51,27 +40,16 @@ const routes = [
   { path: '/mantenimiento', name: 'Mantenimiento', component: Mantenimiento, beforeEnter: authenticated },
 
   { path: '/administrator/departments', name: 'AdministratorDepartments', component: AdministratorDepartment, beforeEnter: authenticated },
+  { path: '/administrator/departments/:id', name: 'AdministratorDepartmentsShow', component: AdministratorDepartmentShow, beforeEnter: authenticated },
   { path: '/administrator/services', name: 'AdministratorServices', component: AdministratorService, beforeEnter: authenticated },
   { path: '/administrator/users', name: 'AdministratorUsers', component: AdministratorUser, beforeEnter: authenticated },
 
-  { path: '/equipments-types', name: 'EquipmentTypes', component: EquipmentType, beforeEnter: authenticated },
+  { path: '/equipments', name: 'Equipment', component: Equipment, beforeEnter: authenticated },
   { path: '/services-types', name: 'ServiceTypes', component: ServiceType, beforeEnter: authenticated },
   { path: '/payments-types', name: 'PaymentTypes', component: PaymentType, beforeEnter: authenticated },
   { path: '/transports', name: 'transports', component: Transport, beforeEnter: authenticated },
   { path: '/incidences', name: 'incidences', component: Incidence, beforeEnter: authenticated },
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
   { path: '/contacts', name: 'Contacts', component: Contact, beforeEnter: authenticated },
-=======
-  { Path: '/contacts', name: 'Contacts', component: Contacts, beforeEnter: authenticated }
->>>>>>> parent of e745cb2 (Contacts)
-=======
-  { Path: '/contacts', name: 'Contacts', component: Contacts, beforeEnter: authenticated }
->>>>>>> parent of e745cb2 (Contacts)
-=======
-  { Path: '/contacts', name: 'Contacts', component: Contacts, beforeEnter: authenticated }
->>>>>>> parent of e745cb2 (Contacts)
 
 ]
 
