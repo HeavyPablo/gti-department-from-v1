@@ -144,7 +144,7 @@
                     </li>
 
                     <li v-if="role === 'admin'" class=" nav-item">
-                        <a class="d-flex align-items-center" href="/equipments-types">
+                        <a class="d-flex align-items-center" href="/equipments">
                             <vue-feather type="list"></vue-feather>
                             <span class="menu-title text-truncate">Tipos de equipamientos</span>
                         </a>

@@ -32,6 +32,10 @@
                             <td class="align-middle">{{ department.address }}</td>
                             <td class="align-middle">{{ department.value }}</td>
                             <td class="align-middle text-end">
+                                <a :href="'/administrator/departments/' + department.id" class="btn btn-primary mx-2">
+                                    <vue-feather type="eye" size="14"></vue-feather>
+                                </a>
+
                                 <button type="button" class="btn btn-warning mx-2" 
                                     data-bs-toggle="modal" data-bs-target="#dlgEditDepartment" 
                                     @click="show(department)">
