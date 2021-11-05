@@ -3,7 +3,7 @@
     <div>
         <modal id="dlgNewDepartment" title="Crear nuevo departamento">
             <template v-slot:body>
-                <form>
+                <form class="needs-validation" novalidate >
                     <div class="row">
                         <div class="ecommerce-gallery" data-mdb-zoom-effect="true" data-mdb-auto-height="true">
                             <div class="row py-3 shadow-5">
@@ -15,30 +15,28 @@
                                             <input ref="fileInput" type="file" @input="pickFile" style="visibility: collapse;">
                                         </div>
                                         
-                                        <div class="row">
-                                            <div class="col-4 mt-1">
-                                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg"
-                                                    data-mdb-img="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg"
-                                                    alt="Gallery image 2"
-                                                    class="w-100"
-                                                />
-                                            </div>
-                                             <div class="col-4 mt-1">
-                                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg"
-                                                    data-mdb-img="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg"
-                                                    alt="Gallery image 2"
-                                                    class="w-100"
-                                                />
-                                            </div>
-                                            <div class="col-4 mt-1">
-                                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg"
-                                                    data-mdb-img="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg"
-                                                    alt="Gallery image 2"
-                                                    class="w-100"
-                                                />
-                                            </div>
-
-
+                                        <div class="row ">
+                                            <div class="col-4 mt-1"> 
+                                                <div class=" gallery-img-chica imagePreviewWrapper-min-gallery" :style="{ 'background-image': `url(${previewImage})` }"
+                                                    @click="selectImage" src="">
+                                                        <input ref="fileInput" type="file" @input="pickFile" style="visibility: collapse;">
+                                                </div>
+                                                
+                                            </div>                                        
+                                             <div class="col-4 mt-1"> 
+                                                <div class=" gallery-img-chica imagePreviewWrapper-min-gallery" :style="{ 'background-image': `url(${previewImage})` }"
+                                                    @click="selectImage" src="">
+                                                        <input ref="fileInput" type="file" @input="pickFile" style="visibility: collapse;">
+                                                </div>
+                                                
+                                            </div> 
+                                           <div class="col-4 mt-1"> 
+                                                <div class=" gallery-img-chica imagePreviewWrapper-min-gallery" :style="{ 'background-image': `url(${previewImage})` }"
+                                                    @click="selectImage" src="">
+                                                        <input ref="fileInput" type="file" @input="pickFile" style="visibility: collapse;">
+                                                </div>
+                                                
+                                            </div> 
                                          </div>
                                 </div>
 
@@ -46,8 +44,11 @@
                                     <div class="row">
 
                                         <div class="col-8 col-sm-6">
-                                            <label class="form-label">Estado</label>
-                                            <input type="text" class="form-control" v-model="create.status"/>
+                                            <label for="validationCustom01" class="form-label">Estado</label>
+                                            <input type="text" class="form-control" id="validationCustom01"  required v-model="create.status"/>
+                                            <div class="valid-feedback">
+                                                ¡Se ve bien!
+                                            </div>
                                         </div>
 
                                         <div class="col-8 col-sm-6">
@@ -172,6 +173,18 @@ export default {
     margin: 0 auto 30px;
     background-size: cover;
     background-position: center center;
+}
+.imagePreviewWrapper-min-gallery{
+    display: block;
+    cursor: pointer;
+    margin: 0 auto 30px;
+    background-size: cover;
+    background-position: center center;
+}
+
+.gallery-img-chica{
+        height: 85px;
+;
 }
 </style>
 
