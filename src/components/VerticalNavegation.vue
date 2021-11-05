@@ -65,14 +65,14 @@
                     </li>
 
                     <li v-if="role === 'official'" class=" nav-item">
-                        <a class="d-flex align-items-center" href="#">
+                        <a class="d-flex align-items-center" href="/CheckIn">
                             <vue-feather type="tool"></vue-feather>
                             <span class="menu-title text-truncate">Check-in</span>
                         </a>
                     </li>
 
                     <li v-if="role === 'official'" class=" nav-item">
-                        <a class="d-flex align-items-center" href="#">
+                        <a class="d-flex align-items-center" href="/CheckOut">
                             <vue-feather type="tool"></vue-feather>
                             <span class="menu-title text-truncate">Check-out</span>
                         </a>

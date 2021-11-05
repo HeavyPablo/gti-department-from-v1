@@ -2,14 +2,14 @@
     <div>
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Check In</h4>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dlgNewCheckIn">
+                <h4 class="card-title">Check Out</h4>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dlgNewCheckOut">
                     <vue-feather type="plus" size="1rem"></vue-feather> Agregar
                 </button>
             </div>
 
             <div class="card-body">
-                <table id="checkinTable" class="table">
+                <table id="checkoutTable" class="table">
                     <thead>
                         <tr>
                         <th>ID</th>
@@ -20,18 +20,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(checkin, index) in CheckIn" :key="index">
-                            <td class="align-middle">{{ checkin.id }}</td>
-                            <td class="align-middle">{{ checkin.condition }}</td>
-                            <td class="align-middle">{{ checkin.signature }}</td>
-                            <td class="align-middle">{{ checkin.description }}</td>
+                        <tr v-for="(checkout, index) in CheckOut" :key="index">
+                            <td class="align-middle">{{ checkout.id }}</td>
+                            <td class="align-middle">{{ checkout.condition }}</td>
+                            <td class="align-middle">{{ checkout.signature }}</td>
+                            <td class="align-middle">{{ checkout.description }}</td>
                             <td class="align-middle text-end">
                                 <button type="button" class="btn btn-warning mx-2" 
-                                    data-bs-toggle="modal" data-bs-target="#dlgEditCheckIn" 
-                                    @click="show(checkin)">
+                                    data-bs-toggle="modal" data-bs-target="#dlgEditCheckOut" 
+                                    @click="show(checkout)">
                                     <vue-feather type="edit-2" size="14"></vue-feather>
                                 </button>
-                                <button type="button" class="btn btn-danger mx-2" @click="destroy(checkin.id)">
+                                <button type="button" class="btn btn-danger mx-2" @click="destroy(checkout.id)">
                                     <vue-feather type="trash-2" size="14"></vue-feather>
                                 </button>
                             </td>
@@ -43,10 +43,10 @@
         </div>
 
 
-        <CheckIn-Create @stored="index"></CheckIn-Create>
+        <CheckOut-Create @stored="index"></CheckOut-Create>
 
 
-        <modal id="dlgEditCheckIn" title="Editar Check In">
+        <modal id="dlgEditCheckOut" title="Editar Check Out">
             <template v-slot:body>
                 <div class="row">
                     <div class="form-group col-sm-12">
@@ -76,19 +76,19 @@
 
 <script>
 
-import CheckIn from '../../services/CheckIn' ;
-import CheckInCreate from './Create';
+import CheckOut from '../../services/CheckOut' ;
+import CheckOutCreate from './Create';
 import { Modal } from 'bootstrap';
 //import jsPDF from 'jspdf';
 
 const $ = require('jquery');
 
 export default {
-    components: { CheckInCreate },
+    components: { CheckOutCreate },
 
     data() {
         return {
-            checkin: [],
+            checkout: [],
             edit: {},
             //errors: {},
         }
@@ -109,29 +109,29 @@ export default {
                 ]
             };
 
-            $('#checkinTable').DataTable().destroy();
+            $('#checkoutTable').DataTable().destroy();
 
-            await CheckIn.get({}, data => {
-                this.checkin = data;
+            await CheckOut.get({}, data => {
+                this.checkout = data;
 
                 this.$nextTick(() => {
-                    $('#checkinTable').DataTable(config);
+                    $('#checkoutTable').DataTable(config);
                 })
             });
         },
 
         async update() {
             this.$toast.clear();
-            await CheckIn.update(this.edit.id, this.edit, () => {
+            await CheckOut.update(this.edit.id, this.edit, () => {
 
                 this.edit = {};
 
                 this.$toast.open({
-                    message: 'Check In actualizado!',
+                    message: 'Check Out actualizado!',
                     type: 'success'
                 });
 
-                var myModalEl = document.getElementById('dlgEditCheckIn')
+                var myModalEl = document.getElementById('dlgEditCheckOut')
                 var modal = Modal.getInstance(myModalEl)
                 modal.hide();
 
@@ -147,12 +147,12 @@ export default {
 
         async destroy(element) {
             this.$toast.clear();
-            await CheckIn.destroy(element, () => {
+            await CheckOut.destroy(element, () => {
 
                 this.edit = {};
 
                 this.$toast.open({
-                    message: 'Check In Eliminado' ,
+                    message: 'Check Out Eliminado' ,
                     type: 'success'
                 });
 
