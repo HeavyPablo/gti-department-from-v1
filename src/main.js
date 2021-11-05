@@ -5,6 +5,7 @@ import axios from 'axios';
 import VueFeather from 'vue-feather';
 import VueToast from 'vue-toast-notification';
 import * as Bootstrap from 'bootstrap';
+import moment from 'moment';
 
 import '@/assets/css/bootstrap.css';
 import '@/assets/css/bootstrap-extended.css';
@@ -52,6 +53,7 @@ if (token) {
 app.use(router);
 app.use(VueToast);
 app.use(Bootstrap);
+app.use(moment);
 
 app.mount('#app');
 
