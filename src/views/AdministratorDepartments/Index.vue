@@ -25,7 +25,11 @@
                     <tbody>
                         <tr v-for="(department, index) in departments" :key="index">
                             <td class="align-middle">{{ department.id }}</td>
-                            <td class="align-middle">{{ department.status }}</td>
+                            <td class="align-middle">
+                                <span class="badge" :class="department.status === 'ACTIVE' ? 'badge-light-success' : department.status === 'IN_MAINTENANCE' ? 'badge-light-warning' : 'badge-light-danger'">
+                                    {{ department.status === 'ACTIVE' ? 'ACTIVO' : department.status === 'IN_MAINTENANCE' ? 'EN MANTENCIÓN' : 'INACTIVO' }}
+                                </span>
+                            </td>
                             <td class="align-middle">{{ department.capacity }}</td>
                             <td class="align-middle">{{ department.bedroom }}</td>
                             <td class="align-middle">{{ department.bathroom }}</td>
