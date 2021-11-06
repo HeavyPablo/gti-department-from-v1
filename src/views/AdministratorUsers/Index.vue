@@ -14,7 +14,7 @@
                         <tr>
                         <th>ID</th>
                         <th>Nombre Usuario</th>
-                        <th>Contraseña</th>
+                      
                         <th>Estado</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
@@ -28,7 +28,7 @@
                         <tr v-for="(admuser, index) in admusers" :key="index">
                             <td class="align-middle">{{ admuser.id }}</td>
                             <td class="align-middle">{{ admuser.username }}</td>
-                            <td class="align-middle">{{ admuser.password }}</td>
+                    
                             <td class="align-middle">{{ admuser.status }}</td>
                             <td class="align-middle">{{ admuser.name }}</td>
                             <td class="align-middle">{{ admuser.last_name }}</td>

@@ -23,7 +23,7 @@
               >
                 <img
                   class="img-fluid"
-                  src="@/assets/images/pages/login-v22.jpg"
+                  src="@/assets/images/wallpaper.jpg"
                   alt="Login V2"
                 />
               </div>

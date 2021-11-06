@@ -18,8 +18,9 @@
 
             <div class="content-detached content-right">
                 <div class="content-body">
-                    <section id="ecommerce-products" class="grid-view">
-                        <div v-for="department in departments" :key="department.id" class="card ecommerce-card width-400">
+                    <section id="ecommerce-products" class="grid-view"> 
+                        <div class="row">
+                        <div v-for="department in departments" :key="department.id" class="card ecommerce-card width-400 p-0 mx-1">
                             <div class="item-img text-center">
                                 <svg class="bd-placeholder-img card-img-top text-center" width="100%" height="180"
                                      xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap"
@@ -67,6 +68,7 @@
                                     Ver departamento
                                 </a>
                             </div>
+                        </div>    
                         </div>
                     </section>
                 </div>

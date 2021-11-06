@@ -43,13 +43,7 @@
                                 <div class="col-sm-9">
                                     <div class="row">
 
-                                        <div class="col-8 col-sm-6">
-                                            <label for="validationCustom01" class="form-label">Estado</label>
-                                            <input type="text" class="form-control" id="validationCustom01"  required v-model="create.status"/>
-                                            <div class="valid-feedback">
-                                                ¡Se ve bien!
-                                            </div>
-                                        </div>
+                                       
 
                                         <div class="col-8 col-sm-6">
                                             <label class="form-label">Dirección</label>
@@ -96,7 +90,7 @@
 <script>
 import { Modal } from 'bootstrap'
 import Department from '../../services/Department'
-import Files from '../../services/Files'
+
 
 
 export default {
@@ -113,7 +107,7 @@ export default {
             async store() {
                 this.$toast.clear();
 
-                await Department.store && Files.store(this.create, () => {
+                await Department.store (this.create, () => {
                     this.$toast.open({
                         message: 'Tipo de equipamiento creado!',
                         type: 'success'
