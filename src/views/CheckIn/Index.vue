@@ -20,7 +20,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(checkin, index) in CheckIn" :key="index">
+                        <tr v-for="(checkin, index) in checkin" :key="index">
                             <td class="align-middle">{{ checkin.id }}</td>
                             <td class="align-middle">{{ checkin.condition }}</td>
                             <td class="align-middle">{{ checkin.signature }}</td>
