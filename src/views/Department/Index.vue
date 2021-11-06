@@ -5,94 +5,59 @@
             <div class="card-body border-bottom">
                 <h4 class="card-title">Departamento disponible</h4>
 
-                <div class="row ">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#dlgNewDepartment">
-                        <vue-feather type="plus" size="1.5rem"></vue-feather> Agregar</button>
-                </div>
-            </div>
-            <div class="card-datatable table-responsive pt-0">
-                <table class="user-list-table table">
-                    <thead class="table-ligth">
-                        <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Estado</th>
-                        <th scope="col">Capacidad</th>
-                        <th scope="col">Cuarto</th>
-                        <th scope="col">cuarto de baño</th>
-                        <th scope="col">Dirección</th>
-                        <th scope="col">valor</th>
-                        <th scope="col">Descripción</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="Department in department_availables" :key="Department.id">
-                            <th scope="row">{{ Department.id }}</th>
-                            <td>{{ Department.status }}</td>
-                            <td>{{ Department.capacity}}</td>
-                            <td>{{ Department.bedrom}}</td>
-                            <td>{{ Department.bathroom}}</td>
-                            <td>{{ Department.address}}</td>
-                            <td>{{ Department.value}}</td>
-                            <td>{{ Department.description}}</td>
-                            <td>
-                                <div class="d-flex">
-                                    <button type="button" class="btn btn-warning mx-2" data-bs-toggle="modal" data-bs-target="#dlgEditDepartment" @click="show(Department)">
-                                        <vue-feather type="edit-2" size="14"></vue-feather>
-                                    </button>
-                                    <button type="button" class="btn btn-danger mx-2" @click="destroy(Department.id)">
-                                        <vue-feather type="trash-2" size="14"></vue-feather>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+
             </div>
         </div>
 
+        <div v-for="department in department" :key="department.id" class="card width-300">
+            <!-- Start - Cambiar por imagen del departamento -->
+            <svg class="bd-placeholder-img card-img-top text-center" width="100%" height="180"
+                 xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap"
+                 preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#868e96"></rect>
+                <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
+            </svg> <!-- End - Cambiar por imagen del departamento  -->
 
-      
+            <div class="card-body">
+                <h5 class="card-title w-100 d-flex">
+                    <span class="flex-fill">{{ department.address }}</span>
+                    ${{ department.value }}
+                </h5>
+                <p class="card-text">{{ department.description }}</p>
 
-     <Department-Create @stored="index"></Department-Create>
-
-
-        <modal id="dlgEditDepartment" title="Editar Departamento">
-            <template v-slot:body>
-                <div class="row">
-                    <div class="form-group col-sm-12">
-                        <label class="form-label">Nombre</label>
-                        <input type="text" class="form-control" v-model="edit.name"/>
-                    </div>
-
-                    <div class="form-group col-sm-12">
-                        <label class="form-label">Descripción</label>
-                        <input type="text" class="form-control" v-model="edit.description"/>
-                    </div>
+                <div class="text-primary my-1">
+                    <vue-feather class="me-1" v-if="hasEquipment(department, 'WIFI')" type="wifi"></vue-feather>
+                    <vue-feather class="me-1" v-if="hasEquipment(department, 'AIRE ACONDICIONADO')" type="wind"></vue-feather>
+                    <vue-feather class="me-1" v-if="hasEquipment(department, 'TELEVISORES')" type="tv"></vue-feather>
+                    <vue-feather class="me-1" v-if="hasEquipment(department, 'TV CABLE')" type="radio"></vue-feather>
                 </div>
-            </template>
 
-            <template v-slot:btnSuccess>
-                <button type="button" class="btn btn-primary" @click="update">Guardar</button>
-            </template>
-        </modal>
-        
-        
+                <div class="text-secondary mb-2">
+                    <small v-for="equipment in department.equipments" :key="equipment.id" class="badge badge-light-success me-1 mb-1">
+                        {{ equipment.name }}
+                    </small>
+                </div>
+
+
+                <a :href="'/client/departments/' + department.id" class="float-end">Ver departamento <vue-feather type="arrow-right" class="ms-1" size="16px"></vue-feather></a>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
 import Department from '../../services/Department'
-import { Modal } from 'bootstrap'
-import DepartmentCreate from './Create.vue'
+import {Modal} from 'bootstrap'
 
 export default {
-    components: { DepartmentCreate },
 
     data() {
         return {
-            department_availables: [],
+            department: [],
             edit: {},
-            errors: {}
+            errors: {},
+            params: {}
         }
     },
 
@@ -103,7 +68,7 @@ export default {
     methods: {
         async index() {
             await Department.get({}, data => {
-                this.department_availables = data;
+                this.department = data;
             });
         },
 
@@ -129,7 +94,7 @@ export default {
         },
 
         show(element) {
-            this.edit = { ...element }
+            this.edit = {...element}
         },
 
         async destroy(element) {
@@ -145,6 +110,16 @@ export default {
 
                 this.index();
             })
+        },
+
+        hasEquipment(department, equipment) {
+            let result = false;
+            department.equipments.forEach(element => {
+                if (element.name === equipment) {
+                    result = true;
+                }
+            })
+            return result;
         }
     }
 }

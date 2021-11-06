@@ -43,7 +43,7 @@
                     </li>
 
                     <li v-if="role === 'client'" class=" nav-item">
-                        <a class="d-flex align-items-center" href="departamento">
+                        <a class="d-flex align-items-center" href="/client/departments">
                             <vue-feather type="check-circle"></vue-feather>
                             <span class="menu-title text-truncate">Buscar departamentos</span>
                         </a>

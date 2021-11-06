@@ -19,48 +19,54 @@ import PaymentType from '../views/paymentsTypes/Index.vue'
 import Transport from '../views/transports/Index.vue'
 import Incidence from '../views/Incidences/Index.vue'
 import Contact from '../views/Contacts/Index.vue'
-import CheckIn from '../views/CheckIn/Index.vue' 
+import CheckIn from '../views/CheckIn/Index.vue'
 import CheckOut from '../views/CheckOut/Index.vue'
 
+// Client components
+import ClientDepartment from '../views/Client/Department/Index.vue'
+import ClientDepartmentShow from '../views/Client/Department/Show.vue'
+
 const authenticated = (to, from, next) => {
-  const token = localStorage.getItem('user-token')
-  if (token) {
-    next()
-    return
-  }
-  next('/login')
+    const token = localStorage.getItem('user-token')
+    if (token) {
+        next()
+        return
+    }
+    next('/login')
 }
 
 const routes = [
-  { path: '/login', name: 'Login', component: Login },
-  { path: '/', name: 'Home', component: Home, beforeEnter: authenticated },
-  { path: '/about', name: 'About', component: () => import('../views/About.vue'), beforeEnter: authenticated },
-  { path: '/tiposervicio', name: 'TipoServicio', component: TipoServicio, beforeEnter: authenticated},
-  { path: '/transporte', name: 'Transporte', component: Transporte, beforeEnter: authenticated },
-  { path: '/departamento', name: 'Departamento', component: Departamento, beforeEnter: authenticated },
-  { path: '/listaservicio', name: 'ListaServicio', component: ListaServicio, beforeEnter: authenticated },
-  { path: '/mantenimiento', name: 'Mantenimiento', component: Mantenimiento, beforeEnter: authenticated },
+    { path: '/login', name: 'Login', component: Login },
+    { path: '/', name: 'Home', component: Home, beforeEnter: authenticated },
+    { path: '/about', name: 'About', component: () => import('../views/About.vue'), beforeEnter: authenticated },
+    { path: '/tiposervicio', name: 'TipoServicio', component: TipoServicio, beforeEnter: authenticated},
+    { path: '/transporte', name: 'Transporte', component: Transporte, beforeEnter: authenticated },
+    { path: '/departamento', name: 'Departamento', component: Departamento, beforeEnter: authenticated },
+    { path: '/listaservicio', name: 'ListaServicio', component: ListaServicio, beforeEnter: authenticated },
+    { path: '/mantenimiento', name: 'Mantenimiento', component: Mantenimiento, beforeEnter: authenticated },
 
-  { path: '/administrator/departments', name: 'AdministratorDepartments', component: AdministratorDepartment, beforeEnter: authenticated },
-  { path: '/administrator/departments/:id', name: 'AdministratorDepartmentsShow', component: AdministratorDepartmentShow, beforeEnter: authenticated },
-  { path: '/administrator/services', name: 'AdministratorServices', component: AdministratorService, beforeEnter: authenticated },
-  { path: '/administrator/users', name: 'AdministratorUsers', component: AdministratorUser, beforeEnter: authenticated },
+    { path: '/administrator/departments', name: 'AdministratorDepartments', component: AdministratorDepartment, beforeEnter: authenticated },
+    { path: '/administrator/departments/:id', name: 'AdministratorDepartmentsShow', component: AdministratorDepartmentShow, beforeEnter: authenticated },
+    { path: '/administrator/services', name: 'AdministratorServices', component: AdministratorService, beforeEnter: authenticated },
+    { path: '/administrator/users', name: 'AdministratorUsers', component: AdministratorUser, beforeEnter: authenticated },
 
-  { path: '/equipments', name: 'Equipment', component: Equipment, beforeEnter: authenticated },
-  { path: '/services-types', name: 'ServiceTypes', component: ServiceType, beforeEnter: authenticated },
-  { path: '/payments-types', name: 'PaymentTypes', component: PaymentType, beforeEnter: authenticated },
-  { path: '/transports', name: 'transports', component: Transport, beforeEnter: authenticated },
-  { path: '/incidences', name: 'incidences', component: Incidence, beforeEnter: authenticated },
-  { path: '/Contacts', name: 'contacts', component: Contact, beforeEnter: authenticated },
-  { path: '/CheckIn', name: 'CheckIn,', component: CheckIn, beforeEnter: authenticated },
-  { path: '/CheckOut', name: 'CheckOut,', component: CheckOut, beforeEnter: authenticated },
-  
+    { path: '/equipments', name: 'Equipment', component: Equipment, beforeEnter: authenticated },
+    { path: '/services-types', name: 'ServiceTypes', component: ServiceType, beforeEnter: authenticated },
+    { path: '/payments-types', name: 'PaymentTypes', component: PaymentType, beforeEnter: authenticated },
+    { path: '/transports', name: 'transports', component: Transport, beforeEnter: authenticated },
+    { path: '/incidences', name: 'incidences', component: Incidence, beforeEnter: authenticated },
+    { path: '/Contacts', name: 'contacts', component: Contact, beforeEnter: authenticated },
+    { path: '/CheckIn', name: 'CheckIn,', component: CheckIn, beforeEnter: authenticated },
+    { path: '/CheckOut', name: 'CheckOut,', component: CheckOut, beforeEnter: authenticated },
 
+    // route client
+    { path: '/client/departments', name: 'ClientDepartment', component: ClientDepartment, beforeEnter: authenticated },
+    { path: '/client/departments/:id', name: 'ClientDepartmentShow', component: ClientDepartmentShow, beforeEnter: authenticated },
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes
+    history: createWebHistory(process.env.BASE_URL),
+    routes
 })
 
 export default router
