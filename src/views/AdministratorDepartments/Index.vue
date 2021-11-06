@@ -25,13 +25,21 @@
                     <tbody>
                         <tr v-for="(department, index) in departments" :key="index">
                             <td class="align-middle">{{ department.id }}</td>
-                            <td class="align-middle">{{ department.status }}</td>
+                            <td class="align-middle">
+                                <span class="badge" :class="department.status === 'ACTIVE' ? 'badge-light-success' : department.status === 'IN_MAINTENANCE' ? 'badge-light-warning' : 'badge-light-danger'">
+                                    {{ department.status === 'ACTIVE' ? 'ACTIVO' : department.status === 'IN_MAINTENANCE' ? 'EN MANTENCIÓN' : 'INACTIVO' }}
+                                </span>
+                            </td>
                             <td class="align-middle">{{ department.capacity }}</td>
                             <td class="align-middle">{{ department.bedroom }}</td>
                             <td class="align-middle">{{ department.bathroom }}</td>
                             <td class="align-middle">{{ department.address }}</td>
                             <td class="align-middle">{{ department.value }}</td>
                             <td class="align-middle text-end">
+                                <a :href="'/administrator/departments/' + department.id" class="btn btn-primary mx-2">
+                                    <vue-feather type="eye" size="14"></vue-feather>
+                                </a>
+
                                 <button type="button" class="btn btn-warning mx-2" 
                                     data-bs-toggle="modal" data-bs-target="#dlgEditDepartment" 
                                     @click="show(department)">

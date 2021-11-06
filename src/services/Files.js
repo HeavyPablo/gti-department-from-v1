@@ -1,12 +1,13 @@
 import axios from "axios";
 
-const URL = '/contacts'
+
+const URL = '/files'
 
 var headers = {
     'Authorization': 'Bearer ' + localStorage.getItem('user-token')
 };
 
-class Contacts {
+class Files {
     static get(params, then) {
         axios.get(URL, {params: params, headers: headers})
         .then(({data}) => then(data));
@@ -47,4 +48,4 @@ class Contacts {
     }
 }
 
-export default Contacts;
+export default Files;

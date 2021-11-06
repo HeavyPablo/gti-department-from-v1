@@ -24,9 +24,9 @@
                     </li>
 
                     <li class=" nav-item">
-                        <a class="d-flex align-items-center" href="/login">
+                        <a class="d-flex align-items-center" @click="logOut">
                             <vue-feather type="log-in"></vue-feather>
-                            <span class="menu-title text-truncate">Iniciar sesión</span>
+                            <span class="menu-title text-truncate">Cerrar sesión</span>
                         </a>
                     </li>
 
@@ -144,7 +144,7 @@
                     </li>
 
                     <li v-if="role === 'admin'" class=" nav-item">
-                        <a class="d-flex align-items-center" href="/equipments-types">
+                        <a class="d-flex align-items-center" href="/equipments">
                             <vue-feather type="list"></vue-feather>
                             <span class="menu-title text-truncate">Tipos de equipamientos</span>
                         </a>
@@ -174,7 +174,7 @@
                     <li v-if="role === 'admin'" class=" nav-item">
                         <a class="d-flex align-items-center" href="/contacts">
                             <vue-feather type="list"></vue-feather>
-                            <span class="menu-title text-truncate">Contacto</span>
+                            <span class="menu-title text-truncate">Contactos</span>
                         </a>
                     </li>
 
@@ -192,6 +192,17 @@ export default {
     data() {
         return {
             role: localStorage.getItem('role')
+        }
+    },
+
+    methods: {
+        logOut() {
+            localStorage.setItem('user-token', '');
+            localStorage.setItem('token-refresh', '');
+            localStorage.setItem('username', '');
+            localStorage.setItem('role', '');
+
+            location.reload();
         }
     }
 }

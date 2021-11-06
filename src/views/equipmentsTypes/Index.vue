@@ -14,7 +14,7 @@
                         <tr>
                         <th>ID</th>
                         <th>Nombre</th>
-                        <th>Descripción</th>
+                        <th>Descipción</th>
                         <th class="no-sort text-end">Acciones</th>
                         </tr>
                     </thead>
