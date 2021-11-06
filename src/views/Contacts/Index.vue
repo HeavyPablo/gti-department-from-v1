@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">Contactos</h4>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dlgNewContacts">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dlgNewContact">
                     <vue-feather type="plus" size="1rem"></vue-feather> Agregar
                 </button>
             </div>
@@ -41,10 +41,10 @@
             </div>
         </div>    
             
-        <contactsCreate @stored="index"></contactsCreate>
+        <contactCreate @stored="index"></contactCreate>
 
 
-        <modal id="dlgEditContacts" title="Editar contactos">
+        <modal id="dlgEditContact" title="Editar contactos">
             <template v-slot:body>
                 <div class="row">                 
                     <div class="form-group col-sm-12">
