@@ -45,7 +45,7 @@ export default {
         async store() {
             this.$toast.clear();
 
-            await Contacts.store(this.create, () => {
+            await Contact.store(this.create, () => {
                 this.$toast.open({
                     message: 'Contacto creado!',
                     type: 'success'
@@ -55,7 +55,7 @@ export default {
 
                 this.$emit('stored');
 
-                var myModalEl = document.getElementById('dlgNewContacts')
+                var myModalEl = document.getElementById('dlgNewContact')
                 var modal = Modal.getInstance(myModalEl)
                 modal.hide();
             }, errors => {

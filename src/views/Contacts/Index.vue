@@ -9,7 +9,7 @@
             </div>
 
             <div class="card-body">
-                <table id="ContactsTable" class="table">
+                <table id="contactTable" class="table">
                     <thead>
                         <tr>
                         <th>ID</th>
@@ -20,18 +20,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(Contacts, index) in Contacts" :key="index">
-                            <td class="align-middle">{{ Contacts.id }}</td>
-                            <td class="align-middle">{{ Contacts.full_name }}</td>
-                            <td class="align-middle">{{ Contacts.phone_number }}</td>
-                            <td class="align-middle">{{ Contacts.email }}</td>
+                        <tr v-for="(contact, index) in contacts" :key="index">
+                            <td class="align-middle">{{ contact.id }}</td>
+                            <td class="align-middle">{{ contact.full_name }}</td>
+                            <td class="align-middle">{{ contact.phone_number }}</td>
+                            <td class="align-middle">{{ contact.email }}</td>
                             <td class="align-middle text-end">
                                 <button type="button" class="btn btn-warning mx-2" 
                                     data-bs-toggle="modal" data-bs-target="#dlgEditContacts" 
-                                    @click="show(Contacts)">
+                                    @click="show(contact)">
                                     <vue-feather type="edit-2" size="14"></vue-feather>
                                 </button>
-                                <button type="button" class="btn btn-danger mx-2" @click="destroy(Contacts.id)">
+                                <button type="button" class="btn btn-danger mx-2" @click="destroy(contact.id)">
                                     <vue-feather type="trash-2" size="14"></vue-feather>
                                 </button>
                             </td>
@@ -78,18 +78,18 @@
 
 <script>
 
-import Contacts from '../../services/Contacts';
-import ContactsCreate from './Create';
+import Contact from '../../services/Contacts';
+import ContactCreate from './Create';
 import { Modal } from 'bootstrap';
 
 const $ = require('jquery');
 
 export default {
-    components: { ContactsCreate },
+    components: { ContactCreate },
 
     data() {
         return {
-            contacts_type: [],
+            contacts: [],
             edit: {},
             errors: {},
         }
@@ -110,20 +110,20 @@ export default {
                 ]
             };
 
-            $('#contactsTable').DataTable().destroy();
+            $('#contactTable').DataTable().destroy();
 
-            await Contacts.get({}, data => {
+            await Contact.get({}, data => {
                 this.contacts_type = data;
 
                 this.$nextTick(() => {
-                    $('#contactsTable').DataTable(config);
+                    $('#contactTable').DataTable(config);
                 })
             });
         },
 
         async update() {
             this.$toast.clear();
-            await Contacts.update(this.edit.id, this.edit, () => {
+            await Contact.update(this.edit.id, this.edit, () => {
 
                 this.edit = {};
 
@@ -148,7 +148,7 @@ export default {
 
         async destroy(element) {
             this.$toast.clear();
-            await Contacts.destroy(element, () => {
+            await Contact.destroy(element, () => {
 
                 this.edit = {};
 
