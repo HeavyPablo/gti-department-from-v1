@@ -25,11 +25,7 @@
               <div class="mb-1">
                 <label class="form-label" for="first-name-column"
                   ><font style="vertical-align: inherit"
-                    ><font style="vertical-align: inherit"
-                      >Nombre Completo</font
-                    ></font
-                  ></label
-                >
+                    ><font style="vertical-align: inherit">Nombre Completo</font></font></label>
                 <input
                   type="text"
                   id="first-name-column"
