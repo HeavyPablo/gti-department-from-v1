@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import AdmUser from '../../services/AdministradorUsers'
+import AdmUser from '../../../services/AdministradorUsers'
 import { Modal } from 'bootstrap'
 
 

@@ -50,11 +50,13 @@
 </template>
 
 <script>
-import AdmService from '../../services/AdministradorServices'
+
+import AdmService from '../../../services/AdministradorServices';
+
 import { Modal } from 'bootstrap'
-import ServiceType from '../../services/ServiceType'
-import Contact from '../../services/Contacts'
-import Transport from '../../services/Transports'
+import ServiceType from '../../../services/ServiceType'
+import Contact from '../../../services/Contacts'
+import Transport from '../../../services/Transports'
 
 
 export default {

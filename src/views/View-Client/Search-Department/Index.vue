@@ -18,9 +18,8 @@
 
             <div class="content-detached content-right">
                 <div class="content-body">
-                    <section id="ecommerce-products" class="grid-view"> 
-                        <div class="row">
-                        <div v-for="department in departments" :key="department.id" class="card ecommerce-card width-400 p-0 mx-1">
+                    <section id="ecommerce-products" class="grid-view">
+                        <div v-for="searchdepartment in searchdepartments" :key="searchdepartment.id" class="card ecommerce-card width-400">
                             <div class="item-img text-center">
                                 <svg class="bd-placeholder-img card-img-top text-center" width="100%" height="180"
                                      xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap"
@@ -42,33 +41,33 @@
                                         </ul>
                                     </div>
                                     <div>
-                                        <h6 class="item-price">${{ department.value }}</h6>
+                                        <h6 class="item-price">${{ searchdepartment.value }}</h6>
                                     </div>
                                 </div>
                                 <h6 class="item-name">
-                                    <a class="text-body">{{ department.address }}</a>
+                                    <a class="text-body">{{ searchdepartment.address }}</a>
                                 </h6>
-                                <p class="card-text item-description">{{ department.description }}</p>
+                                <p class="card-text item-description">{{ searchdepartment.description }}</p>
 
                                 <div class="text-primary my-1">
-                                    <vue-feather class="me-1" v-if="hasEquipment(department, 'WIFI')" type="wifi"></vue-feather>
-                                    <vue-feather class="me-1" v-if="hasEquipment(department, 'AIRE ACONDICIONADO')" type="wind"></vue-feather>
-                                    <vue-feather class="me-1" v-if="hasEquipment(department, 'TELEVISORES')" type="tv"></vue-feather>
-                                    <vue-feather class="me-1" v-if="hasEquipment(department, 'TV CABLE')" type="radio"></vue-feather>
+                                    <vue-feather class="me-1" v-if="hasEquipment(searchdepartment, 'WIFI')" type="wifi"></vue-feather>
+                                    <vue-feather class="me-1" v-if="hasEquipment(searchdepartment, 'AIRE ACONDICIONADO')" type="wind"></vue-feather>
+                                    <vue-feather class="me-1" v-if="hasEquipment(searchdepartment, 'TELEVISORES')" type="tv"></vue-feather>
+                                    <vue-feather class="me-1" v-if="hasEquipment(searchdepartment, 'TV CABLE')" type="radio"></vue-feather>
                                 </div>
 
                                 <div class="text-secondary">
-                                    <small v-for="equipment in department.equipments" :key="equipment.id" class="badge badge-light-success me-1 mb-1">
+                                    <small v-for="equipment in searchdepartment.equipments" :key="equipment.id" class="badge badge-light-success me-1 mb-1">
                                         {{ equipment.name }}
                                     </small>
                                 </div>
                             </div>
                             <div class="item-options text-center">
-                                <a :href="'/client/departments/' + department.id" class="btn btn-primary btn-cart waves-effect waves-float waves-light w-100">
+                                <a :href="'/ViewClient/SearchDepartment/:id'   + searchdepartment.id"
+                                 class="btn btn-primary btn-cart waves-effect waves-float waves-light w-100"  >
                                     Ver departamento
                                 </a>
                             </div>
-                        </div>    
                         </div>
                     </section>
                 </div>
@@ -122,14 +121,14 @@
 </template>
 
 <script>
-import Department from '../../../services/Department'
+import SearchDepartment from '../../../services/SearchDepartment'
 import {Modal} from 'bootstrap'
 
 export default {
 
     data() {
         return {
-            departments: [],
+            searchdepartments: [],
             edit: {},
             errors: {},
             params: {}
@@ -144,14 +143,14 @@ export default {
         async index() {
             this.params.status = 'ACTIVE';
 
-            await Department.get(this.params, data => {
-                this.departments = data;
+            await SearchDepartment.get(this.params, data => {
+                this.searchdepartments = data;
             });
         },
 
         async update() {
             this.$toast.clear();
-            await Department.update(this.edit.id, this.edit, () => {
+            await SearchDepartment.update(this.edit.id, this.edit, () => {
 
                 this.edit = {};
 
@@ -176,7 +175,7 @@ export default {
 
         async destroy(element) {
             this.$toast.clear();
-            await Department.destroy(element, () => {
+            await SearchDepartment.destroy(element, () => {
 
                 this.edit = {};
 
@@ -189,9 +188,9 @@ export default {
             })
         },
 
-        hasEquipment(department, equipment) {
+        hasEquipment(SearchDepartment, equipment) {
             let result = false;
-            department.equipments.forEach(element => {
+            SearchDepartment.equipments.forEach(element => {
                 if (element.name === equipment) {
                     result = true;
                 }

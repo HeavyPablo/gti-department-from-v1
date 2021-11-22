@@ -89,7 +89,7 @@
 
 <script>
 import { Modal } from 'bootstrap'
-import Department from '../../services/Department'
+import SearchDepartment from '../../../services/SearchDepartment'
 
 
 
@@ -107,7 +107,7 @@ export default {
             async store() {
                 this.$toast.clear();
 
-                await Department.store (this.create, () => {
+                await SearchDepartment.store (this.create, () => {
                     this.$toast.open({
                         message: 'Tipo de equipamiento creado!',
                         type: 'success'

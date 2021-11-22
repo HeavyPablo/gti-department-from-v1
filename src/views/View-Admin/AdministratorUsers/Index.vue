@@ -111,7 +111,7 @@
 
 <script>
 
-import AdmUser from '../../services/AdministradorUsers';
+import AdmUser from '../../../services/AdministradorUsers';
 import AdmUserCreate from './Create';
 import { Modal } from 'bootstrap';
 

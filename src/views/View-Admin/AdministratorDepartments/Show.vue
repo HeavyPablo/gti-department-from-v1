@@ -60,10 +60,10 @@
 </template>
 
 <script>
-import Department from '../../services/Department';
+import SearchDepartment from '../../../services/SearchDepartment'
 
-import ComponentAction from "@/views/AdministratorDepartments/Partials/Action";
-import ComponentEquipment from "@/views/AdministratorDepartments/Partials/Equipment";
+import ComponentAction from "@/views/View-Admin/AdministratorDepartments/Partials/Action";
+import ComponentEquipment from "@/views/View-Admin/AdministratorDepartments/Partials/Equipment";
 
 export default {
     components: { ComponentAction, ComponentEquipment },
@@ -94,7 +94,7 @@ export default {
 
     methods: {
         async index(id) {
-            await Department.show(id, data => {
+            await SearchDepartment.show(id, data => {
                 this.department = data;
             })
         },

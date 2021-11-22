@@ -6,13 +6,24 @@ import Transporte from '../views/Transporte.vue'
 import ListaServicio from '../views/ListaServicio.vue'
 import Mantenimiento from '../views/Mantenimiento.vue'
 
-import Departamento from '../views/Department/Index.vue'
 
-import AdministratorDepartment from '../views/AdministratorDepartments/Index.vue'
-import AdministratorDepartmentShow from '../views/AdministratorDepartments/Show.vue'
-import AdministratorService from '../views/AdministratorServices/Index.vue'
-import AdministratorUser from '../views/AdministratorUsers/Index.vue'
 
+//ADMIN
+import AdministratorDepartment from '../views/View-Admin/AdministratorDepartments/Index.vue'
+import AdministratorDepartmentShow from '../views/View-Admin/AdministratorDepartments/Show.vue'
+import AdministratorService from '../views/View-Admin/AdministratorServices/Index.vue'
+
+
+//CLIENT
+import SearchDepartment from '../views/View-Client/Search-Department/Index.vue'
+import SearchDepartmentShow from '../views/View-Client/Search-Department/Show.vue'
+
+//OFICCIAL
+
+
+
+
+import AdministratorUser from '../views/View-Admin/AdministratorUsers/Index.vue'
 import Equipment from '../views/Equipment/Index.vue'
 import ServiceType from '../views/servicesTypes/Index.vue'
 import PaymentType from '../views/paymentsTypes/Index.vue'
@@ -22,9 +33,7 @@ import Contact from '../views/Contacts/Index.vue'
 import CheckIn from '../views/CheckIn/Index.vue'
 import CheckOut from '../views/CheckOut/Index.vue'
 
-// Client components
-import ClientDepartment from '../views/Client/Department/Index.vue'
-import ClientDepartmentShow from '../views/Client/Department/Show.vue'
+
 
 const authenticated = (to, from, next) => {
     const token = localStorage.getItem('user-token')
@@ -41,7 +50,12 @@ const routes = [
     { path: '/about', name: 'About', component: () => import('../views/About.vue'), beforeEnter: authenticated },
     { path: '/tiposervicio', name: 'TipoServicio', component: TipoServicio, beforeEnter: authenticated},
     { path: '/transporte', name: 'Transporte', component: Transporte, beforeEnter: authenticated },
-    { path: '/departamento', name: 'Departamento', component: Departamento, beforeEnter: authenticated },
+
+    //Client
+    { path: '/ViewClient/SearchDepartment', name: 'SearchDepartment', component: SearchDepartment, beforeEnter: authenticated },
+    { path: '/ViewClient/SearchDepartment/:id', name: 'SearchDepartmentShow', component: SearchDepartmentShow, beforeEnter: authenticated },
+
+
     { path: '/listaservicio', name: 'ListaServicio', component: ListaServicio, beforeEnter: authenticated },
     { path: '/mantenimiento', name: 'Mantenimiento', component: Mantenimiento, beforeEnter: authenticated },
 
@@ -59,9 +73,7 @@ const routes = [
     { path: '/CheckIn', name: 'CheckIn,', component: CheckIn, beforeEnter: authenticated },
     { path: '/CheckOut', name: 'CheckOut,', component: CheckOut, beforeEnter: authenticated },
 
-    // route client
-    { path: '/client/departments', name: 'ClientDepartment', component: ClientDepartment, beforeEnter: authenticated },
-    { path: '/client/departments/:id', name: 'ClientDepartmentShow', component: ClientDepartmentShow, beforeEnter: authenticated },
+  
 ]
 
 const router = createRouter({

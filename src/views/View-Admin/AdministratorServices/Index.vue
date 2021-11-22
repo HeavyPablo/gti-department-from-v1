@@ -81,7 +81,7 @@
 
 <script>
 
-import AdmService from '../../services/AdministradorServices';
+import AdmService from '../../../services/AdministradorServices';
 import AdmServiceCreate from './Create';
 import { Modal } from 'bootstrap';
 

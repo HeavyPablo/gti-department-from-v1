@@ -6,7 +6,7 @@ var headers = {
     'Authorization': 'Bearer ' + localStorage.getItem('user-token')
 };
 
-class Department {
+class SearchDepartment {
     static get(params, then) {
         axios.get(URL, {params: params, headers: headers})
         .then(({data}) => then(data));
@@ -47,4 +47,4 @@ class Department {
     }
 }
 
-export default Department;
+export default SearchDepartment;

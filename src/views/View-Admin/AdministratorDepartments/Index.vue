@@ -103,7 +103,7 @@
 </template>
 
 <script>
-import Department from '../../services/Department';
+import SearchDepartment from '../../../services/SearchDepartment'
 import DepartmentCreate from './Create';
 import { Modal } from 'bootstrap';
 
@@ -136,7 +136,7 @@ export default {
 
             $('#administratorDepartmentTable').DataTable().destroy();
 
-            await Department.get({}, data => {
+            await SearchDepartment.get({}, data => {
                 this.departments = data;
 
                 this.$nextTick(() => {
@@ -147,7 +147,7 @@ export default {
 
         async update() {
             this.$toast.clear();
-            await Department.update(this.edit.id, this.edit, () => {
+            await SearchDepartment.update(this.edit.id, this.edit, () => {
 
                 this.edit = {};
 
@@ -172,7 +172,7 @@ export default {
 
         async destroy(element) {
             this.$toast.clear();
-            await Department.destroy(element, () => {
+            await SearchDepartment.destroy(element, () => {
 
                 this.edit = {};
 
