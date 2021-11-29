@@ -35,7 +35,7 @@
                          <div class="form-group col-sm-12">
                             <label class="form-label">Transporte</label>
                             <select class="form-control" v-model="create.transports_id">
-                                <option v-for="transport in transports" :key="transport.id" :value="transport.id">{{transport.vehicle}}</option>
+                                <option v-for="transport in transports" :key="transport.id" :value="transport.id">{{transport.patent}}</option>
                             </select>
                         </div>
 
@@ -52,11 +52,8 @@
 <script>
 
 import AdmService from '../../../services/AdministradorServices';
-
 import { Modal } from 'bootstrap'
-import ServiceType from '../../../services/ServiceType'
-import Contact from '../../../services/Contacts'
-import Transport from '../../../services/Transports'
+
 
 
 export default {
@@ -64,15 +61,11 @@ export default {
         return {
             create: {},
             errors: {},
-            service_types: [],
-            contacts: [],
-            transports: []
+          
         }
     },
 
-    created() {
-        this.loadData()
-    },
+    props:['service_types', 'contacts', 'transports'],
 
     methods: {
         async store() {
@@ -80,6 +73,8 @@ export default {
 
             this.create.from_date = this.create.from_date + ' 00:00:00'
             this.create.to_date = this.create.to_date + ' 00:00:00'
+
+        
 
             await AdmService.store(this.create, () => {
                 this.$toast.open({
@@ -98,20 +93,6 @@ export default {
                 this.errors = errors
             })
         },
-        async loadData() {
-            await ServiceType.get({},data => {
-                this.service_types = data
-            })
-
-            await Contact.get({},data => {
-                this.contacts = data
-            })
-
-            await Transport.get({},data => {
-                this.transports = data
-            })
-
-        }
     }
 }
 </script>

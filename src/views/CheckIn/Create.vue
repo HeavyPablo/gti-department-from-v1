@@ -17,6 +17,14 @@
                             <label class="form-label">Descripcion</label>
                             <input type="text" class="form-control" v-model="create.description"/>
                         </div>
+
+                        <div class="form-group col-sm-12">
+                            <label class="form-label">Tipo de Registro</label>
+                            <select class="form-control" v-model="create.registration_type_id">
+                                <option v-for="registration_type in registration_type" :key="registration_type.id" :value="registration_type.id">{{registration_type.name}}</option>
+                            </select>
+                        </div>
+                        
                     </div>
             </template>
 
@@ -40,6 +48,8 @@ export default {
         }
     },
 
+    props:['registration_type'],
+
     methods: {
         async store() {
             this.$toast.clear();
@@ -61,7 +71,10 @@ export default {
                 this.errors = errors
             })
         },
+        
+        
 
     }
+    
 }
 </script>

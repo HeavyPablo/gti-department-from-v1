@@ -16,15 +16,18 @@
                         <th>Condicion </th>
                         <th>Firma</th>
                         <th>Descripcion</th>
+                        <th>Tipo Registro</th>
+                        <th>Arriendo</th>
                         <th class="no-sort text-end">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(checkin, index) in checkin" :key="index">
+                        <tr v-for="(checkin, index) in checkins" :key="index">
                             <td class="align-middle">{{ checkin.id }}</td>
                             <td class="align-middle">{{ checkin.condition }}</td>
                             <td class="align-middle">{{ checkin.signature }}</td>
                             <td class="align-middle">{{ checkin.description }}</td>
+                            <td class="align-middle">{{ checkin.registrationtype.name }}</td>
                             <td class="align-middle text-end">
                                 <button type="button" class="btn btn-warning mx-2" 
                                     data-bs-toggle="modal" data-bs-target="#dlgEditCheckIn" 
@@ -64,6 +67,13 @@
                         <input type="text" class="form-control" v-model="edit.description"/>
                     </div>
 
+                    <div class="form-group col-sm-12">
+                            <label class="form-label">Tipo de Registro</label>
+                            <select class="form-control" v-model="edit.registration_type_id">
+                                <option v-for="registration_type in registration_type" :key="registration_type.id" :value="registration_type.id">{{registration_type.name}}</option>
+                            </select>
+                    </div>
+
                 </div>
             </template>
 
@@ -79,6 +89,7 @@
 import CheckIn from '../../services/CheckIn' ;
 import CheckInCreate from './Create';
 import { Modal } from 'bootstrap';
+import RegistrationType from '../../services/RegistrationType';
 //import jsPDF from 'jspdf';
 
 const $ = require('jquery');
@@ -88,14 +99,16 @@ export default {
 
     data() {
         return {
-            checkin: [],
+            checkins: [],
             edit: {},
-            //errors: {},
+            errors: {},
+            registration_type: {}
         }
     },
 
     created() {
         this.index();
+        this.loadData();
     },
 
     methods: {
@@ -112,7 +125,7 @@ export default {
             $('#checkinTable').DataTable().destroy();
 
             await CheckIn.get({}, data => {
-                this.checkin = data;
+                this.checkins = data;
 
                 this.$nextTick(() => {
                     $('#checkinTable').DataTable(config);
@@ -160,6 +173,14 @@ export default {
                 
             })
         },
+
+        async loadData() {
+            await RegistrationType.get({},data => {
+                this.registration_type = data
+            })
+
+        }
+
 
         /*
         //metodo para crear pdf
