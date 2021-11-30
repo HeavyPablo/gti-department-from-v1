@@ -65,7 +65,7 @@
                     </li>
 
                     <li v-if="role === 'official'" class=" nav-item">
-                        <a class="d-flex align-items-center" href="/CheckIn">
+                        <a class="d-flex align-items-center" href="/Registration">
                             <vue-feather type="tool"></vue-feather>
                             <span class="menu-title text-truncate">Check-in</span>
                         </a>
