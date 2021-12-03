@@ -141,7 +141,7 @@ export default {
         async index() {
             const config = {
                 language: {
-                    url: 'datatables/language/spanish_mexico.json'
+                    url: '/datatables/language/spanish_mexico.json'
                 },
                 columnDefs: [
                     { targets: 'no-sort', orderable: false},

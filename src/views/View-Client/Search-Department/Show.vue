@@ -158,20 +158,25 @@
 
                             <hr>
 
-                            <a href="" class="btn btn-primary">Arrendar</a>
+                            <a href="#dlgRent" data-bs-toggle="modal" data-bs-target="#dlgRent" class="btn btn-primary">Arrendar</a>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+
+    <send :department="department"></send>
 </template>
 
 <script>
 
 import SearchDepartment from "../../../services/SearchDepartment";
+import Send from "./Partials/Send.vue"
 
 export default {
+    components: {Send},
+
     data() {
         return {
             department: {}
