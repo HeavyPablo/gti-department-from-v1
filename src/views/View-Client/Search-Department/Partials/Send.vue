@@ -62,6 +62,7 @@ export default {
             this.create.use_conditions = this.create.check_conditions ? 'ACEPTADO' : 'NO ACEPTADO';
             this.create.departments_id = this.department.id;
             this.create.value = (this.create.rate * 100) + this.department.value;
+            this.create.username = localStorage.getItem('username');
 
             await DepartmentSend.store(this.create, () => {
                 this.$toast.open({
