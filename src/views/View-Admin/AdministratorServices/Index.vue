@@ -88,7 +88,7 @@
                             </select>
                         </div>
 
-                         <div class="form-group col-sm-12">
+                        <div class="form-group col-sm-12">
                             <label class="form-label">Transporte</label>
                             <select class="form-control" v-model="edit.transports_id">
                                 <option v-for="transport in transports" :key="transport.id" :value="transport.id">{{transport.patent}}</option>

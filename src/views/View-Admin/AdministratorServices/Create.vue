@@ -37,7 +37,7 @@
                                          <div class="col-4 col-sm-6 ">
                                              <label class="form-label">Transporte</label>
                                             <select class="form-control" v-model="create.transports_id">
-                                                <option v-for="transport in transports" :key="transport.id" :value="transport.id">{{transport.vehicle}}</option>
+                                                <option v-for="transport in transports" :key="transport.id" :value="transport.id">{{transport.patent}}</option>
                                             </select>
                                         </div>
                                     </div>
