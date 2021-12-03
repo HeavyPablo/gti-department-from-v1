@@ -1,12 +1,12 @@
 import axios from "axios";
 
-const URL = '/View-Official/CheckIn'
+const URL = '/admreports'
 
 var headers = {
     'Authorization': 'Bearer ' + localStorage.getItem('user-token')
 };
 
-class CheckIn {
+class AdmReports {
     static get(params, then) {
         axios.get(URL, {params: params, headers: headers})
         .then(({data}) => then(data));
@@ -18,7 +18,6 @@ class CheckIn {
 
             data.forEach(element => {
                 elements.push({ value: element.id, text: element.name });
-                
             });
 
             then(elements);
@@ -48,4 +47,4 @@ class CheckIn {
     }
 }
 
-export default CheckIn;
+export default AdmReports;

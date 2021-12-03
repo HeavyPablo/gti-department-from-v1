@@ -137,6 +137,13 @@
                         </a>
                     </li>
 
+                    <li v-if="role === 'admin'" class=" nav-item">
+                        <a class="d-flex align-items-center" href="/administrator/Reportes">
+                            <vue-feather type="list"></vue-feather>
+                            <span class="menu-title text-truncate">Reportes</span>
+                        </a>
+                    </li>
+
 
                     <li v-if="role === 'admin'" class=" navigation-header">
                         Configuración
