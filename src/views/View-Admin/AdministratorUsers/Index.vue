@@ -14,8 +14,6 @@
                         <tr>
                         <th>ID</th>
                         <th>Nombre Usuario</th>
-                      
-                        <th>Estado</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>Dirección</th>
@@ -29,7 +27,6 @@
                         <tr v-for="(admuser, index) in admusers" :key="index">
                             <td class="align-middle">{{ admuser.id }}</td>
                             <td class="align-middle">{{ admuser.username }}</td>
-                            <td class="align-middle">{{ admuser.status }}</td>
                             <td class="align-middle">{{ admuser.name }}</td>
                             <td class="align-middle">{{ admuser.last_name }}</td>
                             <td class="align-middle">{{ admuser.address }}</td>
@@ -69,11 +66,6 @@
                     <div class="form-group col-sm-12">
                         <label class="form-label">Contraseña</label>
                         <input type="password" class="form-control" v-model="edit.password"/>
-                    </div>
-
-                    <div class="form-group col-sm-12">
-                        <label class="form-label">Estado</label>
-                        <input type="text" class="form-control" v-model="edit.status"/>
                     </div>
 
                     <div class="form-group col-sm-12">

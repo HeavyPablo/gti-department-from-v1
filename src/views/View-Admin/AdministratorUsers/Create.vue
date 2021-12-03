@@ -14,11 +14,6 @@
                         </div>
 
                         <div class="form-group col-sm-12">
-                            <label class="form-label">Estado</label>
-                            <input type="text" class="form-control" v-model="create.status"/>
-                        </div>
-
-                        <div class="form-group col-sm-12">
                             <label class="form-label">Nombre</label>
                             <input type="text" class="form-control" v-model="create.name"/>
                         </div>
