@@ -27,7 +27,7 @@
                             <td class="align-middle">{{ contact.email }}</td>
                             <td class="align-middle text-end">
                                 <button type="button" class="btn btn-warning mx-2" 
-                                    data-bs-toggle="modal" data-bs-target="#dlgEditContacts" 
+                                    data-bs-toggle="modal" data-bs-target="#dlgEditContact" 
                                     @click="show(contact)">
                                     <vue-feather type="edit-2" size="14"></vue-feather>
                                 </button>
@@ -41,7 +41,7 @@
             </div>
         </div>    
             
-        <contactCreate @stored="index"></contactCreate>
+        <Contact-Create @stored="index"></Contact-Create>
 
 
         <modal id="dlgEditContact" title="Editar contactos">
@@ -103,7 +103,7 @@ export default {
         async index() {
             const config = {
                 language: {
-                    url: 'datatables/language/spanish_mexico.json'
+                    url: '/datatables/language/spanish_mexico.json'
                 },
                 columnDefs: [
                     { targets: 'no-sort', orderable: false},
@@ -113,7 +113,7 @@ export default {
             $('#contactTable').DataTable().destroy();
 
             await Contact.get({}, data => {
-                this.contacts_type = data;
+                this.contacts = data;
 
                 this.$nextTick(() => {
                     $('#contactTable').DataTable(config);
@@ -132,7 +132,7 @@ export default {
                     type: 'success'
                 });
 
-                var myModalEl = document.getElementById('dlgEditContacts')
+                var myModalEl = document.getElementById('dlgEditContact')
                 var modal = Modal.getInstance(myModalEl)
                 modal.hide();
 

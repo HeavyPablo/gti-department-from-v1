@@ -63,7 +63,7 @@
                                 </div>
                             </div>
                             <div class="item-options text-center">
-                                <a :href="'/ViewClient/SearchDepartment/:id'   + searchdepartment.id"
+                                <a :href="'/ViewClient/SearchDepartment/' + searchdepartment.id"
                                  class="btn btn-primary btn-cart waves-effect waves-float waves-light w-100"  >
                                     Ver departamento
                                 </a>
@@ -113,7 +113,6 @@
                         </div>
                     </div>
                     <!-- Ecommerce Sidebar Ends -->
-
                 </div>
             </div>
         </div>

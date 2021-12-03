@@ -1,12 +1,12 @@
 import axios from "axios";
 
-const URL = '/CheckIn'
+const URL = '/roles'
 
 var headers = {
     'Authorization': 'Bearer ' + localStorage.getItem('user-token')
 };
 
-class CheckIn {
+class Role {
     static get(params, then) {
         axios.get(URL, {params: params, headers: headers})
         .then(({data}) => then(data));
@@ -48,4 +48,4 @@ class CheckIn {
     }
 }
 
-export default CheckIn;
+export default Role;

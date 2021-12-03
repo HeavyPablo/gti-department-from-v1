@@ -260,14 +260,14 @@
                 <h4>
                   <font style="vertical-align: inherit"
                     ><font style="vertical-align: inherit"
-                      >Mantener Disponibilidad</font
+                      >Servicios Extra</font
                     ></font
                   >
                 </h4>
                 <p class="text-body mt-1 mb-0">
                   <font style="vertical-align: inherit"
                     ><font style="vertical-align: inherit"
-                      >Lorem ipsum dolor sit amet consectetur adipisicing elit.</font
+                      >En turismo real te ofrecemos los mejores servicios de transporte y tours.</font
                     ></font
                   >
                 </p>

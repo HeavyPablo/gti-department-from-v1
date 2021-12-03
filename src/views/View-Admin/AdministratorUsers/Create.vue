@@ -10,12 +10,7 @@
 
                         <div class="form-group col-sm-12">
                             <label class="form-label">Contraseña</label>
-                            <input type="text" class="form-control" v-model="create.password"/>
-                        </div>
-
-                        <div class="form-group col-sm-12">
-                            <label class="form-label">Estado</label>
-                            <input type="text" class="form-control" v-model="create.status"/>
+                            <input type="password" class="form-control" v-model="create.password"/>
                         </div>
 
                         <div class="form-group col-sm-12">
@@ -42,6 +37,13 @@
                             <label class="form-label">Teléfono</label>
                             <input type="text" class="form-control" v-model="create.phone_number"/>
                         </div>
+
+                        <div class="form-group col-sm-12">
+                        <label class="form-label">Rol</label>
+                        <select class="form-control" v-model="create.roles_id">
+                            <option v-for="role in role" :key="role.id" :value="role.id">{{role.name}}</option>
+                        </select>
+                    </div>
                         
                     </div>
             </template>
@@ -65,6 +67,8 @@ export default {
             errors: {}
         }
     },
+
+     props:['role'],
 
     methods: {
         async store() {

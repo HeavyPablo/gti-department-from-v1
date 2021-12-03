@@ -1,6 +1,6 @@
 <template>
     <div>
-        <modal id="dlgNewCheckIn" title="Crear nuevo Check In">
+        <modal id="dlgNewRegistration" title="Crear nuevo Check In">
             <template v-slot:body>
                 <div class="row">
                         <div class="form-group col-sm-12">
@@ -17,6 +17,14 @@
                             <label class="form-label">Descripcion</label>
                             <input type="text" class="form-control" v-model="create.description"/>
                         </div>
+
+                         <div class="form-group col-sm-12">
+                            <label class="form-label">Tipo de Registro</label>
+                            <select class="form-control" v-model="create.registrations_types_id">
+                                <option v-for="registration_type in registration_type" :key="registration_type.id" :value="registration_type.id">{{registration_type.name}}</option>
+                            </select>
+                    </div>
+                        
                     </div>
             </template>
 
@@ -28,23 +36,27 @@
 </template>
 
 <script>
-import CheckIn from '../../services/CheckIn'
+import Registration from '../../services/Registration'
 import { Modal } from 'bootstrap'
+
 
 
 export default {
     data() {
         return {
             create: {},
-            errors: {}
+            errors: {},
+        
         }
     },
+
+    props:['registration_type'],
 
     methods: {
         async store() {
             this.$toast.clear();
 
-            await CheckIn.store(this.create, () => {
+            await Registration.store(this.create, () => {
                 this.$toast.open({
                     message: 'Check In creado!',
                     type: 'success'
@@ -54,14 +66,17 @@ export default {
 
                 this.$emit('stored');
 
-                var myModalEl = document.getElementById('dlgNewCheckIn')
+                var myModalEl = document.getElementById('dlgNewRegistration')
                 var modal = Modal.getInstance(myModalEl)
                 modal.hide();
             }, errors => {
                 this.errors = errors
             })
         },
+        
+        
 
     }
+    
 }
 </script>

@@ -14,13 +14,12 @@
                         <tr>
                         <th>ID</th>
                         <th>Nombre Usuario</th>
-                      
-                        <th>Estado</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>Dirección</th>
                         <th>Correo</th>
                         <th>Teléfono</th>
+                        <th>Rol</th>
                         <th class="no-sort text-end">Acciones</th>
                         </tr>
                     </thead>
@@ -28,13 +27,12 @@
                         <tr v-for="(admuser, index) in admusers" :key="index">
                             <td class="align-middle">{{ admuser.id }}</td>
                             <td class="align-middle">{{ admuser.username }}</td>
-                    
-                            <td class="align-middle">{{ admuser.status }}</td>
                             <td class="align-middle">{{ admuser.name }}</td>
                             <td class="align-middle">{{ admuser.last_name }}</td>
                             <td class="align-middle">{{ admuser.address }}</td>
                             <td class="align-middle">{{ admuser.email }}</td>
                             <td class="align-middle">{{ admuser.phone_number }}</td>
+                            <td class="align-middle">{{ admuser.role.name }}</td>
 
                             <td class="align-middle text-end">
                                 <button type="button" class="btn btn-warning mx-2" 
@@ -54,7 +52,7 @@
         </div>
 
 
-        <adm-user-create @stored="index"></adm-user-create>
+        <adm-user-create :role="role" @stored="index"></adm-user-create>
 
 
         <modal id="dlgEditAdmUser" title="Editar">
@@ -67,12 +65,7 @@
 
                     <div class="form-group col-sm-12">
                         <label class="form-label">Contraseña</label>
-                        <input type="text" class="form-control" v-model="edit.password"/>
-                    </div>
-
-                    <div class="form-group col-sm-12">
-                        <label class="form-label">Estado</label>
-                        <input type="text" class="form-control" v-model="edit.status"/>
+                        <input type="password" class="form-control" v-model="edit.password"/>
                     </div>
 
                     <div class="form-group col-sm-12">
@@ -99,6 +92,14 @@
                         <label class="form-label">Teléfono</label>
                         <input type="text" class="form-control" v-model="edit.phone_number"/>
                     </div>
+
+                    <div class="form-group col-sm-12">
+                        <label class="form-label">Rol</label>
+                        <select class="form-control" v-model="edit.roles_id">
+                            <option v-for="role in role" :key="role.id" :value="role.id">{{role.name}}</option>
+                        </select>
+                    </div>
+
                 </div>
             </template>
 
@@ -114,6 +115,7 @@
 import AdmUser from '../../../services/AdministradorUsers';
 import AdmUserCreate from './Create';
 import { Modal } from 'bootstrap';
+import Role from '../../../services/Role';
 
 
 
@@ -125,20 +127,22 @@ export default {
     data() {
         return {
             admusers: [],
-            edit: {},
-            errors: {},
+            edit: [],
+            errors: [],
+            role: []
         }
     },
 
     created() {
         this.index();
+        this.loadData();
     },
 
     methods: {
         async index() {
             const config = {
                 language: {
-                    url: 'datatables/language/spanish_mexico.json'
+                    url: '/datatables/language/spanish_mexico.json'
                 },
                 columnDefs: [
                     { targets: 'no-sort', orderable: false},
@@ -197,6 +201,13 @@ export default {
               
             })
         },
+
+        async loadData() {
+            await Role.get({},data => {
+                this.role = data
+            })
+
+        }
 
     }
 }
