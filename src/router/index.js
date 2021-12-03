@@ -12,7 +12,6 @@ import Mantenimiento from '../views/Mantenimiento.vue'
 import AdministratorDepartment from '../views/View-Admin/AdministratorDepartments/Index.vue'
 import AdministratorDepartmentShow from '../views/View-Admin/AdministratorDepartments/Show.vue'
 import AdministratorService from '../views/View-Admin/AdministratorServices/Index.vue'
-import AdministratorReports from '../views/View-Admin/AdministratorReports/Index.vue'
 
 
 //CLIENT
@@ -20,8 +19,7 @@ import SearchDepartment from '../views/View-Client/Search-Department/Index.vue'
 import SearchDepartmentShow from '../views/View-Client/Search-Department/Show.vue'
 
 //OFICCIAL
-//import CheckIn from '../views/View-Official/CheckIn/Index.vue'
-//import CheckOut from '../views/View-Official/CheckOut/Index.vue'
+
 
 
 
@@ -32,7 +30,8 @@ import PaymentType from '../views/paymentsTypes/Index.vue'
 import Transport from '../views/transports/Index.vue'
 import Incidence from '../views/Incidences/Index.vue'
 import Contact from '../views/Contacts/Index.vue'
-
+import CheckIn from '../views/CheckIn/Index.vue'
+import CheckOut from '../views/CheckOut/Index.vue'
 
 
 
@@ -64,7 +63,6 @@ const routes = [
     { path: '/administrator/departments/:id', name: 'AdministratorDepartmentsShow', component: AdministratorDepartmentShow, beforeEnter: authenticated },
     { path: '/administrator/services', name: 'AdministratorServices', component: AdministratorService, beforeEnter: authenticated },
     { path: '/administrator/users', name: 'AdministratorUsers', component: AdministratorUser, beforeEnter: authenticated },
-    { path: '/administrator/reports', name: 'AdministratorReports', component: AdministratorReports, beforeEnter: authenticated },
 
     { path: '/equipments', name: 'Equipment', component: Equipment, beforeEnter: authenticated },
     { path: '/services-types', name: 'ServiceTypes', component: ServiceType, beforeEnter: authenticated },
@@ -72,10 +70,8 @@ const routes = [
     { path: '/transports', name: 'transports', component: Transport, beforeEnter: authenticated },
     { path: '/incidences', name: 'incidences', component: Incidence, beforeEnter: authenticated },
     { path: '/Contacts', name: 'contacts', component: Contact, beforeEnter: authenticated },
-    
-    //official
-    //{ path: '/ViewOfficial/CheckIn', name: 'CheckIn,', component: CheckIn, beforeEnter: authenticated },
-    //{ path: '/ViewOfficial/CheckOut', name: 'CheckOut,', component: CheckOut, beforeEnter: authenticated },
+    { path: '/CheckIn', name: 'CheckIn,', component: CheckIn, beforeEnter: authenticated },
+    { path: '/CheckOut', name: 'CheckOut,', component: CheckOut, beforeEnter: authenticated },
 
   
 ]

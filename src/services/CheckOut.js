@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = '/View-Official/CheckOut'
+const URL = '/CheckOut'
 
 var headers = {
     'Authorization': 'Bearer ' + localStorage.getItem('user-token')
