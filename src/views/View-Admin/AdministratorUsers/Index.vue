@@ -13,7 +13,7 @@
                     <thead>
                         <tr>
                         <th>ID</th>
-                        <th>Nombre Usuario</th>
+                        <th>Usuario</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>Dirección</th>
@@ -59,7 +59,7 @@
             <template v-slot:body>
                 <div class="row">
                     <div class="form-group col-sm-12">
-                        <label class="form-label">Nombre Usuario</label>
+                        <label class="form-label">Usuario</label>
                         <input type="text" class="form-control" v-model="edit.username"/>
                     </div>
 

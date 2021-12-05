@@ -4,7 +4,7 @@
             <template v-slot:body>
                 <div class="row">
                         <div class="form-group col-sm-12">
-                            <label class="form-label">Nombre Usuario</label>
+                            <label class="form-label">Usuario</label>
                             <input type="text" class="form-control" v-model="create.username"/>
                         </div>
 
