@@ -7,44 +7,11 @@
                         <div class="ecommerce-gallery" data-mdb-zoom-effect="true" data-mdb-auto-height="true">
                             <div class="row py-3 shadow-5">
                                 <div id="preview" class="col-sm-3 mb-1">
-                                    <div class="lightbox">
-                                        <div class="imagePreviewWrapper"
-                                             :style="{ 'background-image': `url(${previewImage})` }"
-                                             @click="selectImage" src="">
-                                        </div>
-                                        <input ref="fileInput" type="file" @input="pickFile"
-                                               style="visibility: collapse;">
+                                    <div class="mb-3">
+                                        <input class="form-control" type="file" multiple @change="pickFile">
                                     </div>
 
-                                    <div class="row ">
-                                        <div class="col-4 mt-1">
-                                            <div class=" gallery-img-chica imagePreviewWrapper-min-gallery"
-                                                 :style="{ 'background-image': `url(${previewImage})` }"
-                                                 @click="selectImage" src="">
-                                                <input ref="fileInput" type="file" @input="pickFile"
-                                                       style="visibility: collapse;">
-                                            </div>
-
-                                        </div>
-                                        <div class="col-4 mt-1">
-                                            <div class=" gallery-img-chica imagePreviewWrapper-min-gallery"
-                                                 :style="{ 'background-image': `url(${previewImage})` }"
-                                                 @click="selectImage" src="">
-                                                <input ref="fileInput" type="file" @input="pickFile"
-                                                       style="visibility: collapse;">
-                                            </div>
-
-                                        </div>
-                                        <div class="col-4 mt-1">
-                                            <div class=" gallery-img-chica imagePreviewWrapper-min-gallery"
-                                                 :style="{ 'background-image': `url(${previewImage})` }"
-                                                 @click="selectImage" src="">
-                                                <input ref="fileInput" type="file" @input="pickFile"
-                                                       style="visibility: collapse;">
-                                            </div>
-
-                                        </div>
-                                    </div>
+                                    <viewer-files :files="files"></viewer-files>
                                 </div>
 
                                 <div class="col-sm-9">
@@ -104,14 +71,13 @@
 import {Modal} from 'bootstrap'
 import SearchDepartment from '../../../services/SearchDepartment'
 
-
 export default {
     data() {
         return {
             create: {},
             errors: {},
-            previewImage: null
-
+            previewImage: null,
+            files: []
         }
     },
 
@@ -119,9 +85,14 @@ export default {
         async store() {
             this.$toast.clear();
 
+            this.create.files = [];
+            this.files.forEach(file => {
+                this.create.files.push(file.base64);
+            });
+
             await SearchDepartment.store(this.create, () => {
                 this.$toast.open({
-                    message: 'Tipo de equipamiento creado!',
+                    message: 'Departamente creado!',
                     type: 'success'
                 });
 
@@ -135,59 +106,37 @@ export default {
             }, errors => {
                 this.errors = errors
             })
-
         },
-
 
         selectImage() {
             this.$refs.fileInput.click()
         },
 
-        pickFile() {
-            let input = this.$refs.fileInput
-            let file = input.files
-            if (file && file[0]) {
-                let reader = new FileReader
-                reader.onload = e => {
-                    this.previewImage = e.target.result
-                }
-                reader.readAsDataURL(file[0])
-                this.$emit('input', file[0])
+        async pickFile(input) {
+            this.files = [];
+            for (const file of Array.from(input.target.files)) {
+                const reader = await this.getBase64(file);
+
+                const element = {base64: reader}
+                this.files.push(element);
             }
+        },
+
+        async getBase64(file) {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+
+                reader.onloadend = function () {
+                    resolve(reader.result);
+                }
+
+                reader.readAsDataURL(file);
+            });
         }
-
-
     },
-
-
 }
-
-
 </script>
 
-<style>
-.imagePreviewWrapper {
-    width: 250px;
-    height: 250px;
-    display: block;
-    cursor: pointer;
-    margin: 0 auto 30px;
-    background-size: cover;
-    background-position: center center;
-}
-
-.imagePreviewWrapper-min-gallery {
-    display: block;
-    cursor: pointer;
-    margin: 0 auto 30px;
-    background-size: cover;
-    background-position: center center;
-}
-
-.gallery-img-chica {
-    height: 85px;;
-}
-</style>
 
 
 

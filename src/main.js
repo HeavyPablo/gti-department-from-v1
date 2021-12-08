@@ -23,10 +23,6 @@ import '@/assets/vendors/css/tables/datatable/dataTables.bootstrap5.min.css';
 
 import 'vue-toast-notification/dist/theme-sugar.css';
 
-import Modal from './components/Modal';
-
-
-
 import "jszip"
 import "pdfmake"
 import "datatables.net-bs5"
@@ -36,11 +32,15 @@ import "datatables.net-buttons/js/buttons.print"
 import "datatables.net-scroller-bs5"
 import "datatables.net-searchbuilder-bs5"
 
+import Modal from './components/Modal';
+import ViewerFiles from './components/ViewerFiles';
+
 
 const app = createApp(App);
 
 app.component('VueFeather', VueFeather);
 app.component('Modal', Modal);
+app.component('ViewerFiles', ViewerFiles);
 
 axios.defaults.withCredentials = true
 axios.defaults.baseURL = 'http://localhost:8080/';
