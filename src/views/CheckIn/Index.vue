@@ -3,9 +3,7 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">Reservas pendientes para realizar check in</h4>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dlgNewCheckIn">
-                    <vue-feather type="plus" size="1rem"></vue-feather> Agregar
-                </button>
+               
             </div>
 
             <div class="card-body">
@@ -34,11 +32,12 @@
                             <td class="align-middle">{{ checkin.departments_id }}</td>
                             <td class="align-middle">{{ checkin.users_id }}</td>
                             <td class="align-middle text-end">
-                                <button type="button" class="btn btn-warning mx-2" 
-                                    data-bs-toggle="modal" data-bs-target="#dlgEditCkeckIn" 
-                                    @click="show(checkin)">
-                                    <vue-feather type="edit-2" size="14"></vue-feather>
+                                
+                                <button type="button" class="btn btn-success mx-2" @click="show(checkin)"
+                                data-bs-toggle="modal" data-bs-target="#dlgNewRegistration">
+                                    <vue-feather type="check-circle" size="14"></vue-feather>
                                 </button>
+
                                 <button type="button" class="btn btn-danger mx-2" @click="destroy(checkin.id)">
                                     <vue-feather type="trash-2" size="14"></vue-feather>
                                 </button>
@@ -51,34 +50,22 @@
         </div>
 
 
-        <CheckInCreate @stored="index"></CheckInCreate>
+        <RegistrationCreate :rents_id="edit.id" @stored="index"></RegistrationCreate>
 
-
-        <modal id="dlgEditCheckIn" title="Editar Check In">
-            <template v-slot:body>
-                <div class="row">
-                  
-
-                </div>
-            </template>
-
-            <template v-slot:btnSuccess>
-                <button type="button" class="btn btn-primary" @click="update">Guardar</button>
-            </template>
-        </modal>     
+       
     </div>
 </template>
 
 <script>
 
 import CheckIn from '../../services/CheckIn';
-import CheckInCreate from './Create';
+import RegistrationCreate from './Create';
 import { Modal } from 'bootstrap';
 
 const $ = require('jquery');
 
 export default {
-    components: { CheckInCreate },
+    components: { RegistrationCreate },
 
     data() {
         return {
