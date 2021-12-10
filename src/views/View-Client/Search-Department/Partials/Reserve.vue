@@ -87,12 +87,6 @@ export default {
             errors: {},
             config: {
                 mode: 'range',
-                disable: [
-                    function(date) {
-                        // disable every multiple of 8
-                        return !(date.getDate() % 8);
-                    }
-                ]
             }
         }
     },
@@ -119,6 +113,25 @@ export default {
             }
             console.log(element);
             return element;
+        }
+    },
+
+    watch: {
+        department() {
+            const disabled = [];
+
+            if (this.department.rents && this.department.rents.length > 0) {
+                this.department.rents.forEach(rent => {
+                    if (rent.start_date && rent.end_date) {
+                        disabled.push({
+                            from: moment(rent.start_date).format('YYYY-MM-DD'),
+                            to: moment(rent.end_date).format('YYYY-MM-DD')
+                        });
+                    }
+                })
+
+                this.config.disable = disabled;
+            }
         }
     },
 
