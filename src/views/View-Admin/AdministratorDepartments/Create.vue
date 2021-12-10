@@ -87,7 +87,7 @@ export default {
 
             this.create.files = [];
             this.files.forEach(file => {
-                this.create.files.push(file.base64);
+                this.create.files.push(file.file_base64);
             });
 
             await SearchDepartment.store(this.create, () => {
@@ -108,16 +108,12 @@ export default {
             })
         },
 
-        selectImage() {
-            this.$refs.fileInput.click()
-        },
-
         async pickFile(input) {
             this.files = [];
             for (const file of Array.from(input.target.files)) {
                 const reader = await this.getBase64(file);
 
-                const element = {base64: reader}
+                const element = {file_base64: reader}
                 this.files.push(element);
             }
         },
