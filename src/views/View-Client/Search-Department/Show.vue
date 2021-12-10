@@ -110,7 +110,7 @@
 
                             <hr>
 
-                            <a href="#dlgRent" data-bs-toggle="modal" data-bs-target="#dlgRent" class="btn btn-primary">Arrendar</a>
+                            <a href="#dlgReserve" data-bs-toggle="modal" data-bs-target="#dlgReserve" class="btn btn-primary">Reservar</a>
                         </div>
                     </div>
                 </form>
@@ -118,16 +118,16 @@
         </div>
     </div>
 
-    <send :department="department"></send>
+    <reserve :department="department"></reserve>
 </template>
 
 <script>
 
 import SearchDepartment from "../../../services/SearchDepartment";
-import Send from "./Partials/Send.vue"
+import Reserve from "./Partials/Reserve.vue"
 
 export default {
-    components: {Send},
+    components: {Reserve},
 
     data() {
         return {

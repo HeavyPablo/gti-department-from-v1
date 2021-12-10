@@ -28,6 +28,7 @@
     "vudal": "^1.12.3",
     "vue": "^3.2.19",
     "vue-feather": "^2.0.0-rc",
+    "vue-flatpickr-component": "^9.0.5",
     "vue-router": "^4.0.0-0",
     "vue-toast-notification": "^2.0.1",
     "vue-underscore": "^0.1.4",

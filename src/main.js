@@ -20,6 +20,7 @@ import '@/assets/vendors/css/tables/datatable/responsive.bootstrap5.min.css';
 import '@/assets/vendors/css/tables/datatable/buttons.bootstrap5.min.css';
 import '@/assets/vendors/css/tables/datatable/rowGroup.bootstrap5.min.css';
 import '@/assets/vendors/css/tables/datatable/dataTables.bootstrap5.min.css';
+import '@/assets/vendors/css/pickers/flatpickr/flatpickr.min.css';
 
 import 'vue-toast-notification/dist/theme-sugar.css';
 
@@ -32,8 +33,12 @@ import "datatables.net-buttons/js/buttons.print"
 import "datatables.net-scroller-bs5"
 import "datatables.net-searchbuilder-bs5"
 
+// import 'flatpickr/dist/flatpickr.css';
+
 import Modal from './components/Modal';
 import ViewerFiles from './components/ViewerFiles';
+import flatPickr from 'vue-flatpickr-component';
+
 
 
 const app = createApp(App);
@@ -53,6 +58,7 @@ if (token) {
 app.use(router);
 app.use(VueToast);
 app.use(Bootstrap);
+app.use(flatPickr);
 app.use(moment);
 
 app.mount('#app');
