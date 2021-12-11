@@ -17,6 +17,7 @@ import AdministratorService from '../views/View-Admin/AdministratorServices/Inde
 //CLIENT
 import SearchDepartment from '../views/View-Client/Search-Department/Index.vue'
 import SearchDepartmentShow from '../views/View-Client/Search-Department/Show.vue'
+import DepartmentReserve from '../views/View-Client/Reserve.vue'
 
 //OFICCIAL
 
@@ -39,7 +40,7 @@ const authenticated = (to, from, next) => {
     const token = localStorage.getItem('user-token')
     if (token) {
         next()
-        return
+        return;
     }
     next('/login')
 }
@@ -54,6 +55,7 @@ const routes = [
     //Client
     { path: '/ViewClient/SearchDepartment', name: 'SearchDepartment', component: SearchDepartment, beforeEnter: authenticated },
     { path: '/ViewClient/SearchDepartment/:id', name: 'SearchDepartmentShow', component: SearchDepartmentShow, beforeEnter: authenticated },
+    { path: '/departments/reserve', name: 'DepartmentReserve', component: DepartmentReserve, beforeEnter: authenticated },
 
 
     { path: '/listaservicio', name: 'ListaServicio', component: ListaServicio, beforeEnter: authenticated },

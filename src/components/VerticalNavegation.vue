@@ -51,7 +51,7 @@
                     </li>
 
                     <li v-if="role === 'client'" class=" nav-item">
-                        <a class="d-flex align-items-center" href="/">
+                        <a class="d-flex align-items-center" href="/departments/reserve">
                             <vue-feather type="list"></vue-feather>
                             <span class="menu-title text-truncate">Mis reservas</span>
                         </a>
