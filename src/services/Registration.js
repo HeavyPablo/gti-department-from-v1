@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = '/Registration'
+const URL = '/check-in'
 
 var headers = {
     'Authorization': 'Bearer ' + localStorage.getItem('user-token')

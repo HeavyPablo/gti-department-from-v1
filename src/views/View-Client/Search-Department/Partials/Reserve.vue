@@ -161,15 +161,17 @@ export default {
                 var myModalEl = document.getElementById('dlgReserve')
                 var modal = Modal.getInstance(myModalEl)
                 modal.hide();
+
+                window.location.href = '/departments/reserve';
             }, errors => {
                 this.errors = errors
             })
         },
 
         getValueFormat(value, is_total = false, percentage = 0, formatted = true) {
-            const formatter = new Intl.NumberFormat('en-US', {
+            const formatter = new Intl.NumberFormat('en-CL', {
                 style: 'currency',
-                currency: 'USD',
+                currency: 'CLP',
             });
 
             let value_format = value;

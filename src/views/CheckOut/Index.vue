@@ -2,95 +2,81 @@
     <div>
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Check Out</h4>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dlgNewCheckOut">
-                    <vue-feather type="plus" size="1rem"></vue-feather> Agregar
-                </button>
+                <h4 class="card-title">Check-out Resgistro de termino de estadía.</h4>
             </div>
 
             <div class="card-body">
-                <table id="checkoutTable" class="table">
+                <table id="CheckOutTable" class="table">
                     <thead>
-                        <tr>
+                    <tr>
                         <th>ID</th>
-                        <th>Condicion </th>
-                        <th>Firma</th>
-                        <th>Descripcion</th>
+                        <th>Departamento</th>
+                        <th>Fecha de llegada</th>
+                        <th>Fecha de salida</th>
+                        <th>Cliente</th>
                         <th class="no-sort text-end">Acciones</th>
-                        </tr>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(checkout, index) in CheckOut" :key="index">
-                            <td class="align-middle">{{ checkout.id }}</td>
-                            <td class="align-middle">{{ checkout.condition }}</td>
-                            <td class="align-middle">{{ checkout.signature }}</td>
-                            <td class="align-middle">{{ checkout.description }}</td>
-                            <td class="align-middle text-end">
-                                <button type="button" class="btn btn-warning mx-2" 
-                                    data-bs-toggle="modal" data-bs-target="#dlgEditCheckOut" 
-                                    @click="show(checkout)">
-                                    <vue-feather type="edit-2" size="14"></vue-feather>
-                                </button>
-                                <button type="button" class="btn btn-danger mx-2" @click="destroy(checkout.id)">
-                                    <vue-feather type="trash-2" size="14"></vue-feather>
-                                </button>
-                            </td>
-                        </tr>
+                    <tr v-for="(checkout, index) in checkouts" :key="index">
+                        <td class="align-middle">{{ checkout.id }}</td>
+                        <td class="align-middle">
+                            <div v-if="checkout.departments">
+                                <div class="border-bottom">
+                                    <span class="fw-bold">#{{ checkout.departments.id }}</span>
+                                    {{ checkout.departments.address }}
+                                </div>
+                                <div class="font-small-3">
+                                    {{ checkout.departments.description }}
+                                </div>
+                            </div>
+                        </td>
+                        <td class="align-middle">{{ dateFormat(checkout.start_date) }}</td>
+                        <td class="align-middle">{{ dateFormat(checkout.end_date) }}</td>
+                        <td class="align-middle">
+                            <div v-if="checkout.user">
+                                <div class="border-bottom">
+                                    {{ checkout.user.name }} {{ checkout.user.last_name }}
+                                </div>
+                                <div class="fs-6">
+                                    {{ checkout.user.email }}
+                                </div>
+                            </div>
+                        </td>
+                        <td class="align-middle text-end">
+                            <button type="button" class="btn btn-success mx-2" @click="show(checkout)"
+                                    data-bs-toggle="modal" data-bs-target="#dlgNewCheckOut">
+                                <vue-feather type="check-circle" size="14"></vue-feather>
+                            </button>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
-            
         </div>
 
-
-        <CheckOut-Create @stored="index"></CheckOut-Create>
-
-
-        <modal id="dlgEditCheckOut" title="Editar Check Out">
-            <template v-slot:body>
-                <div class="row">
-                    <div class="form-group col-sm-12">
-                        <label class="form-label">Condiciones</label>
-                        <input type="text" class="form-control" v-model="edit.condition"/>
-                    </div>
-
-                    <div class="form-group col-sm-12">
-                        <label class="form-label">Firma</label>
-                        <input type="text" class="form-control" v-model="edit.signature"/>
-                    </div>
-
-                    <div class="form-group col-sm-12">
-                        <label class="form-label">Descripcion</label>
-                        <input type="text" class="form-control" v-model="edit.description"/>
-                    </div>
-
-                </div>
-            </template>
-
-            <template v-slot:btnSuccess>
-                <button type="button" class="btn btn-primary" @click="update">Guardar</button>
-            </template>
-        </modal>     
+        <RegistrationCreate :rents_id="edit.id" @stored="index"></RegistrationCreate>
     </div>
 </template>
 
 <script>
 
-import CheckOut from '../../services/CheckOut' ;
-import CheckOutCreate from './Create';
-import { Modal } from 'bootstrap';
-//import jsPDF from 'jspdf';
+import CheckOut from '../../services/CheckOut';
+import RegistrationCreate from './Create';
+import {Modal} from 'bootstrap';
+import moment from "moment";
 
 const $ = require('jquery');
 
 export default {
-    components: { CheckOutCreate },
+    components: { RegistrationCreate },
 
     data() {
         return {
-            checkout: [],
+            checkouts: [],
             edit: {},
-            //errors: {},
+            errors: {}
+
         }
     },
 
@@ -109,13 +95,17 @@ export default {
                 ]
             };
 
-            $('#checkoutTable').DataTable().destroy();
+            $('#CheckOutTable').DataTable().destroy();
 
-            await CheckOut.get({}, data => {
-                this.checkout = data;
+            const params = {
+                status: 'ACCEPTED'
+            }
+
+            await CheckOut.get(params, data => {
+                this.checkouts = data;
 
                 this.$nextTick(() => {
-                    $('#checkoutTable').DataTable(config);
+                    $('#CheckOutTable').DataTable(config);
                 })
             });
         },
@@ -123,7 +113,6 @@ export default {
         async update() {
             this.$toast.clear();
             await CheckOut.update(this.edit.id, this.edit, () => {
-
                 this.edit = {};
 
                 this.$toast.open({
@@ -131,7 +120,7 @@ export default {
                     type: 'success'
                 });
 
-                var myModalEl = document.getElementById('dlgEditCheckOut')
+                var myModalEl = document.getElementById('dlgNewCheckOut')
                 var modal = Modal.getInstance(myModalEl)
                 modal.hide();
 
@@ -145,52 +134,9 @@ export default {
             this.edit = { ...element }
         },
 
-        async destroy(element) {
-            this.$toast.clear();
-            await CheckOut.destroy(element, () => {
-
-                this.edit = {};
-
-                this.$toast.open({
-                    message: 'Check Out Eliminado' ,
-                    type: 'success'
-                });
-
-                this.index();
-                
-            })
-        },
-
-        /*
-        //metodo para crear pdf
-        createPDF () {
-        let pdfName = 'test'; 
-        var doc = new jsPDF();
-        doc.text("Hello World", 10, 10);
-        doc.save(pdfName + '.pdf');
-        },
-
-        download() {
-        const doc = new jsPDF();
-        const contentHtml = this.$refs.content.innerHTML;
-        doc.fromHTML(contentHtml, 15, 15, {
-        width: 170
-        });
-        doc.save("sample.pdf");
-        },
-
-        downloadWithCSS() {
-        const doc = new jsPDF();
-        /** WITH CSS /
-        var canvasElement = document.createElement('canvas');
-            html2canvas(this.$refs.content, { canvas: canvasElement 
-            }).then(function (canvas) {
-            const img = canvas.toDataURL("image/jpeg", 0.8);
-            doc.addImage(img,'JPEG',20,20);
-            doc.save("sample.pdf");
-        });
-        },
-        */
+        dateFormat(date) {
+            return moment(date).format('YYYY-MM-DD');
+        }
     }
 }
 </script>

@@ -3,28 +3,18 @@
         <modal id="dlgNewRegistration" title="Crear nuevo Check In">
             <template v-slot:body>
                 <div class="row">
-                      
-                    <div class="col-8 col-sm-6">
-
+                    <div class="col-12">
                         <div class="form-group col-sm-12">
-                            <label class="form-label">Condicion</label>
-                            <input type="text" class="form-control" v-model="create.condition"/>
-                        </div>  
-
-                        <div class="form-group col-sm-12">
-                            <label class="form-label">Firma</label>
-                            <input type="text" class="form-control" v-model="create.signature"/>
-                        </div>       
-
-                        <div class="col-15 col-sm-15 mt-1">
-                            <label class="form-label">Descripción</label>
-                            <textarea class="form-control" rows="3"
-                            v-model="create.description"></textarea>
+                            <label class="form-label">Número de transacción</label>
+                            <input type="number" class="form-control" v-model="create.condition"/>
                         </div>
 
+                        <div class="col-15 col-sm-15 mt-1">
+                            <label class="form-label">Observación</label>
+                            <textarea class="form-control" v-model="create.description"/>
+                        </div>
                     </div>
                 </div>
-
             </template>
 
             <template v-slot:btnSuccess>
@@ -55,7 +45,7 @@ export default {
         async store() {
             this.$toast.clear();
             
-            this.create.rents_id=this.rents_id;
+            this.create.rent_id = this.rents_id;
 
             await Registration.store(this.create, () => {
                 this.$toast.open({
