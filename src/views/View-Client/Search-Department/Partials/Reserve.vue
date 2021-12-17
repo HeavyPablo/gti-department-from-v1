@@ -42,6 +42,10 @@
                             Valor Reserva 19%: <span class="text-primary">{{ getDiffDays && getDiffDays.diff > 0 ? getValueFormat(department.value, true, 19) : '$0' }}</span>
                         </label>
 
+                        <label v-if="current_services.length > 0" class="col-12 mb-1 fs-5 text-end">
+                            <span class="text-warning">Servicio asignado, valor a pagar presencial.</span>
+                        </label>
+
                         <div class="text-center">
                             <div class="form-group col-sm-12 border-bottom mb-1">
                                 <label class="form-label">Método de pago</label>
@@ -62,6 +66,60 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <div v-if="validateLonger" class="w-100 overflow-y-scroll d-flex flex-nowrap my-2" style="overflow-y: hidden">
+                    <div v-for="(service, index) in services" :key="index" >
+                        <div class="d-flex mx-25 my-3   text-center" style="min-width: 100px">
+                            <div class="bg-light-warning p-3 border-end-warning">
+                                <div class="text-center">
+                                    <div class="fs-3">{{ service.servicetypes.name }}</div>
+                                    <div class="fs-5">{{ service.place }}</div>
+                                    <div class="fs-5">{{ service.from_date }} - {{ service.to_date }}</div>
+                                </div>
+                                <button v-if="!verifyService(service)" type="button" class="btn btn-warning mt-3" @click="addService(service)">
+                                    <span class="d-flex justify-content-center align-items-center">
+                                        <vue-feather type="plus"></vue-feather> Agregar servicio
+                                    </span>
+                                </button>
+
+                                <button v-else type="button" class="btn btn-danger mt-3" @click="removeService(service)">
+                                    <span class="d-flex justify-content-center align-items-center">
+                                        <vue-feather type="x"></vue-feather> Quitar servicio
+                                    </span>
+                                </button>
+                            </div>
+
+                            <div class="flex-fill ps-3 p-2 text-start bg-light-secondary">
+                                <div class="fs-4">Detalle</div>
+                                <div class="fs-5 mb-1 w-100">
+                                    * Servicio habilitado para los usuarios con antiguedad.
+                                </div>
+                                <div class="fs-5">
+                                    El pago de este servicio es presencial al conductor asignado.
+                                </div>
+                                <div class="fs-5">
+                                    $10.000 ~ $30.000
+                                </div>
+                                <div class="border-bottom my-3"></div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="fs-6">
+                                            Vehículo: {{ service.transport.vehicle }}
+                                        </div>
+                                        <div class="fs-6">
+                                            Patente: {{ service.transport.patent }}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        Contacto: {{ service.contact.full_name }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
             </template>
@@ -87,11 +145,12 @@ export default {
             errors: {},
             config: {
                 mode: 'range',
-            }
+            },
+            current_services: []
         }
     },
 
-    props: ['department'],
+    props: ['department', 'services'],
 
     computed: {
         getDiffDays() {
@@ -113,6 +172,10 @@ export default {
             }
             console.log(element);
             return element;
+        },
+
+        validateLonger() {
+            return localStorage.getItem('longer');
         }
     },
 
@@ -189,6 +252,32 @@ export default {
             }
 
             return value_format;
+        },
+
+        verifyService(service) {
+            let exist = false;
+            this.current_services.forEach((element) => {
+                if (service.id === element.id) {
+                    exist = true;
+                }
+            });
+
+            return exist;
+        },
+
+        addService(service) {
+            this.current_services.push(service)
+        },
+
+        removeService(service) {
+            let x = 0;
+            this.current_services.forEach((element, index) => {
+                if (service.id === element.id) {
+                    x = index;
+                }
+            });
+
+            this.current_services.splice(x, 1);
         }
     }
 }

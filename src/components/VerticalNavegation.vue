@@ -30,13 +30,6 @@
                         </a>
                     </li>
 
-                    <li v-if="role === 'client'" class=" nav-item bg-gradient-danger">
-                        <a class="d-flex align-items-center text-white" href="#">
-                            <vue-feather type="dollar-sign"></vue-feather>
-                            <span class="menu-title text-truncate">Mis pagos pendientes</span>
-                        </a>
-                    </li>
-
                     <li v-if="role === 'client' || role === 'official'" class=" navigation-header">
                         Departamentos
                         <i data-feather="more-horizontal"></i>

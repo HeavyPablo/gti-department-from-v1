@@ -118,20 +118,22 @@
         </div>
     </div>
 
-    <reserve :department="department"></reserve>
+    <reserve :department="department" :services="services"></reserve>
 </template>
 
 <script>
 
 import SearchDepartment from "../../../services/SearchDepartment";
 import Reserve from "./Partials/Reserve.vue"
+import AdmService from "../../../services/AdministradorServices";
 
 export default {
     components: {Reserve},
 
     data() {
         return {
-            department: {}
+            department: {},
+            services: []
         }
     },
 
@@ -172,14 +174,21 @@ export default {
     },
 
     created() {
+        this.loadData();
         this.index();
     },
 
     methods: {
+        async loadData() {
+            await AdmService.get({}, data => {
+                this.services = data;
+            });
+        },
+
         async index() {
             await SearchDepartment.show(this.$route.params.id, data => {
                 this.department = data;
-            })
+            });
         },
 
         hasEquipment(equipment) {
